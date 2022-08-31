@@ -32,3 +32,25 @@
 // console.log(`just
 // a reguar
 // string`);
+
+ // if / else 
+//  const age = 17; 
+
+//  if (age >= 18) {
+//     console.log(`Sarah can start driving license`);
+//  } else {
+//     const yearsLeft = 18 - age;
+//     console.log(`Sara is to small. Waight another ${yearsLeft} years`);
+//  }
+
+// let centry;
+//  const bithYear = 2001;
+//  if (bithYear <= 2000) {
+//     centry = 20;
+//  } else {
+//     centry = 21;
+//  }
+// console.log(centry);
+
+// let x = '2' - 10 - 10 + '2' - '12'
+// console.log(x);
