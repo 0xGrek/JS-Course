@@ -54,3 +54,27 @@
 
 // let x = '2' - 10 - 10 + '2' - '12'
 // console.log(x);
+
+// SWITH STATMENT 
+// const day = '';
+// switch (day) {  // day === moonday 
+//     case 'monday':
+//         console.log('Now will do sport all day');
+//         console.log('Watch TV after Sleep');
+//         break;
+//     case 'tuesday':
+//         console.log('Party in the Tavira');
+//         break;
+//     case 'wednasday':
+//         console.log('Go to the reustoraunt with family');
+//         break;
+//     case 'thursday':
+//         console.log('I will learn web-dev');
+//         break;
+//     case 'saturday':
+//     case 'sunday':
+//         console.log( 'I sleep every day');
+//         break;
+//     default:
+//         console.log('DOTA 2');
+// }
