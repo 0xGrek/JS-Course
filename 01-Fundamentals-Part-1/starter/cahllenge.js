@@ -57,6 +57,6 @@
 
 
 
-const bill = 430 
-const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2 
-console.log(`if the bill ${bill} you must pay ${tip} and your value ${bill + tip} euro`);
+// const bill = 430 
+// const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2 
+// console.log(`if the bill ${bill} you must pay ${tip} and your value ${bill + tip} euro`);
