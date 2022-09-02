@@ -132,3 +132,19 @@
     // console.log(population);
     // console.log(procent);
 
+// const friends = ['a','b', 'c','d'];
+// const newFriends = friends.push('Oleg');
+// friends.unshift('Vasya');
+
+// friends.pop();
+// friends.shift();
+// friends.indexOf('a');
+// console.log(friends.indexOf('d')); 
+// console.log(friends.includes('a'));
+// console.log(friends.includes('lol'));
+
+// if(friends.includes('dd')) {
+//     console.log('You go with a');
+// }
+
+// console.log(friends);
