@@ -44,14 +44,21 @@
 
 // Coding Challenge #2
 
-const calcTip = function(bill) {
-    return  bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
+// function calcTip(bill) {
+//    return bill <= 300 && bill >= 15 ? bill * 0.15 : bill * 0.20;
+// }
 
+// const bills = [10, 200, 350];
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+// const all =  [calcTip(bills[0]) + bills[0], calcTip(bills[1])+ bills[1], calcTip(bills[2]) + bills[2]];
+
+// console.log(bills, tips, all);
+
+const friends = {
+    firstName: 'Oleg',
+    job: 'IT',
+    parents: ['mother', 'phather', 'brother'],
+    age: 20,
+    animals: 'dog'
 }
-
-// const calcTip = bill => >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.20;
-
-const bills = [125, 555, 44];
-const tip = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
-const total = []
-    console.log(bills, tip);
+console.log(`Name my boy  is ${friends.firstName}, he has work in ${[friends.job + ' '+friends.animals]}, and now him ${friends.parents[2]} speaking with me about my ${friends.age} ears old.`);
