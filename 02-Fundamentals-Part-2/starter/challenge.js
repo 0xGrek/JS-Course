@@ -54,11 +54,43 @@
 
 // console.log(bills, tips, all);
 
-const friends = {
-    firstName: 'Oleg',
-    job: 'IT',
-    parents: ['mother', 'phather', 'brother'],
-    age: 20,
-    animals: 'dog'
-}
-console.log(`Name my boy  is ${friends.firstName}, he has work in ${[friends.job + ' '+friends.animals]}, and now him ${friends.parents[2]} speaking with me about my ${friends.age} ears old.`);
+// // Coding Challenge #3
+
+// const person1 = {
+//     firstName: `Mark`,
+//     lastName: `Miller`,
+//     weight: 78,
+//     height: 1.69,
+
+//     calcBMI: function() {
+//         this.bmi = this.weight / this.height ** 2;
+//         return this.bmi;
+//     }
+// }
+
+// person1.calcBMI();
+// console.log(person1.bmi);
+// // console.log(person1.calcBMI());
+
+// const person2 = {
+//     firstName: `John`,
+//     lastName: `Smith`,
+//     weight: 92,
+//     height: 1.95,
+
+//     calcBMI: function() {
+//         this.bmi = this.weight / this.height ** 2;
+//         return this.bmi;
+//     }
+// }
+// person2.calcBMI();
+// console.log(person2.bmi);
+// // console.log(person2.calcBMI());
+
+
+// console.log(`BMI ${person1.bmi > person2.bmi
+// ? `Mark (${person1.bmi}) higer than John
+// (${person2.bmi})` 
+// : `John (${person1.bmi}) higer than Mark
+// (${person2.bmi})`}`);
+

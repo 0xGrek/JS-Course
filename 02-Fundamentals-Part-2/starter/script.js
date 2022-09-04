@@ -62,7 +62,7 @@
 //     console.log(china);
 //     console.log(ukraine);
 //     console.log(japan);
-
+// ///////////////////////////////////////////
 // **Declaration func
 // const worldPopulation = 7900;
 // function percentageOfWorld1 (population,country) {
@@ -105,21 +105,21 @@
 //     const allPeoplePocent =population * 100 / worldPopulation;
 //     return `${country} has ${population} millions, its make ${allPeoplePocent} to all world`;
 // }
-    // const china = percentageOfWorld1(111, 'UK');
-    // const ukraine = percentageOfWorld1(222,'UK');
-    // const japan = percentageOfWorld1(333,'UK');
-    // const oae = percentageOfWorld1(444,'UK');
+//     const china = percentageOfWorld1(111, 'UK');
+//     const ukraine = percentageOfWorld1(222,'UK');
+//     const japan = percentageOfWorld1(333,'UK');
+//     const oae = percentageOfWorld1(444,'UK');
 
 
-    // const population = [1, 2, 3, 4];
-    // const team1 = percentageOfWorld1(population[0],'china');
-    // const team2 = percentageOfWorld1(population[1],'china');
-    // const team3 = percentageOfWorld1(population[2],'china');
-    // const team4 = percentageOfWorld1(population[3],'china');
-    // console.log(team1);
-    // console.log(team2);
-    // console.log(team3);
-    // console.log(team4);
+//     const population = [1, 2, 3, 4];
+//     const team1 = percentageOfWorld1(population[0],'china');
+//     const team2 = percentageOfWorld1(population[1],'china');
+//     const team3 = percentageOfWorld1(population[2],'china');
+//     const team4 = percentageOfWorld1(population[3],'china');
+//     console.log(team1);
+//     console.log(team2);
+//     console.log(team3);
+//     console.log(team4);
 
 
     // const procent = [percentageOfWorld1(population[0]), percentageOfWorld1(population[1]), percentageOfWorld1(population[2]),percentageOfWorld1(population[3])];
@@ -148,3 +148,162 @@
 // }
 
 // console.log(friends);
+
+// const friends = {
+//     firstName: 'Oleg',
+//     job: 'IT',
+//     parents: ['mother', 'phather', 'brother'],
+//     age: 20,
+//     animals: 'dog'
+// }
+// console.log(`Name my boy  is ${friends.firstName}, he has work in ${[friends.job + ' '+friends.animals]}, and now him ${friends.parents[2]} speaking with me about my ${friends.age} ears old.`);
+
+////////////////////////////////////////////
+// Basic Array Operations (Methods)
+
+// const country = ['Uraine', 'China', 'USA', 'Spain', 'Portugal']
+// let newCounrty = country.push('Utopia');
+
+// country.pop();
+// country[1]  = 'Jambo';
+
+// console.log(country);
+
+// const neighbours = [country[0], country[2], country[4]];
+// neighbours[2] = 'Jambo';
+
+// if (neighbours.includes('USA')) {
+//     console.log(`It was OK`);
+// } else {
+//     console.log(`Probably not a central European country :D'`);
+// }
+
+// console.log(neighbours);
+// console.log(neighbours.indexOf('USA'));
+
+// Introduction to Objects
+
+// const myCountry = {
+//     country: 'USA',
+//     capital: 'Mayami',
+//     language: 'Averican',
+//     population: 100,
+//     neighbours: ['Mexica', 'Canada', 'England']
+// }
+// myCountry['population'] = 50;
+// console.log(myCountry);
+
+// console.log(`${myCountry.country} has a ${myCountry.population} milion ${myCountry.language}-skeaking people, ${myCountry.neighbours.length} neighbours and a capital ${myCountry.capital}`);
+
+// myCountry.population = 50;
+// console.log(myCountry);
+
+// ******************************
+// const jonas = {
+//     firstName: 'Jonas',
+//     lastName: 'Ivanenko',
+//     bithYear: '1999',
+//     job: 'teacher',
+//     firends: ['a', 'b', 'c'],
+//     hasDriverLicense: true,
+    
+    // calcAge: function (bithYear) {
+    //     return 2022 - bithYear;
+    // }
+
+//     calcAge: function () {
+//         // console.log(this);
+//         return age = 2022 - this.bithYear;
+//     },
+
+//     getSummary: function () {
+//         return `${jonas.firstName} is a ${jonas.calcAge()}-year old ${jonas.job}, and he has ${this.hasDriverLicense ? `a` : `no`} drivers license`;
+//     }
+// }
+// console.log(jonas.calcAge(1999));
+// console.log(jonas[`calcAge`](1999));
+// if (jonas.hasDriverLicense == true) {
+//     console.log(`ok`)
+// } else {
+//     console.log(`not`)
+// };
+// console.log(jonas.getSummary());
+// console.log(jonas.calcAge());
+
+// Object Methods
+
+// const myCountry = {
+//     country: 'USA',
+//     capital: 'Mayami',
+//     language: 'Averican',
+//     population: 100,
+//     neighbours: ['Mexica', 'Canada', 'England'],
+//     isIsland: false,
+    
+//     describe: function() {
+//         return this.capital;
+//     },
+
+//     checkIslan: function() {
+//         return ` ${myCountry.country} ${myCountry.isIsland ? ` have friends` : ` not have friends`}`;
+//     }
+// }
+// console.log(myCountry.describe());
+// console.log(myCountry.checkIslan());
+
+// for (let rep = 1; rep <= 10; rep++)  {
+//     console.log(`Kak${rep} dela `);
+// }
+
+// **************Iteration: The for Loop
+// for (let rep = 1; rep <= 50; rep++) {
+//     console.log(`Voter nubmer ${rep} is curently voting`);
+// }
+
+///////////////////////////////////////
+// Looping Arrays, Breaking and Continuing
+
+// const worldPopulation = 5000;
+// const population = [100, 200, 300, 400];
+
+// const precetages2 = []
+// for (let  i = 0; i < population.length; i++) {
+//     precetages2.push(population[i] * 100 / worldPopulation);
+// }
+// console.log(precetages2);
+// diferent
+// const percentageOfWorld3 = (population) => {
+//     return population * 100 / worldPopulation;
+// }
+//     const loh = percentageOfWorld3(population[0]);
+//     console.log(loh);   
+     
+// const nameFirst = [1 , 'a', 2, 'b', 3, 'c', 'g', 11 , 20 , 30]
+// const nameSecond = [];
+// for (let i  = 0 ; i <= 20 ; i++) {
+//     if (typeof nameFirst[i] !== 'string' ) continue;
+//     nameSecond.push(2022 - nameFirst[i]);
+    // nameSecond.push('DOTA' + nameFirst[i]);
+
+
+    // console.log(nameSecond);
+    // console.log(nameFirst[i]);
+    // console.log([i])
+// }
+
+// /////////////////////////////////
+// Looping Backwards and Loops in Loops
+
+const listOfNeighbours = [
+    ['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']
+];
+ 
+for (let i = 0; i < listOfNeighbours.length; i++) {
+    for (let y = 0; y < listOfNeighbours[i].length; y++) {
+        console.log(`Neighbour: ${listOfNeighbours[i][y]}`);
+    }
+}
+
+
+
+
