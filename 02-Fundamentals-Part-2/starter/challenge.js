@@ -16,7 +16,7 @@
 //     }
 // }
 // checkWinner(scoreDelphins,scoreKoalas);
-// // Test 2 
+// // Test 2
 // scoreDelphins = calcAverage(85, 54, 41);
 // scoreKoalas = calcAverage(23, 34, 27);
 
@@ -90,7 +90,37 @@
 
 // console.log(`BMI ${person1.bmi > person2.bmi
 // ? `Mark (${person1.bmi}) higer than John
-// (${person2.bmi})` 
+// (${person2.bmi})`
 // : `John (${person1.bmi}) higer than Mark
 // (${person2.bmi})`}`);
 
+/////////////////////////////
+// // Coding Challenge #4
+
+function calcTip(bill) {
+    return bill <= 300 && bill >= 15 ? bill * 0.15 : bill * 0.20;
+}
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52 ]
+const tips = []
+const totals = []
+// const arr = []
+
+for (let i = 0; i < bills.length; i++) {
+    const tip = calcTip(bills[i]);
+    tips.push(tip);
+    totals.push(tip + bills[i]);
+
+}
+console.log(bills,tips, totals);
+
+const calcAvarage = function(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        // sum = sum + arr[i];
+        sum += arr[i];
+    }
+    return sum / arr.length;
+}
+
+console.log(calcAvarage([2, 3, 6]));
+console.log(calcAvarage(totals));

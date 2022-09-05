@@ -271,12 +271,8 @@
 //     precetages2.push(population[i] * 100 / worldPopulation);
 // }
 // console.log(precetages2);
-// diferent
-// const percentageOfWorld3 = (population) => {
-//     return population * 100 / worldPopulation;
-// }
-//     const loh = percentageOfWorld3(population[0]);
-//     console.log(loh);   
+
+  
      
 // const nameFirst = [1 , 'a', 2, 'b', 3, 'c', 'g', 11 , 20 , 30]
 // const nameSecond = [];
@@ -294,16 +290,37 @@
 // /////////////////////////////////
 // Looping Backwards and Loops in Loops
 
-const listOfNeighbours = [
-    ['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']
-];
+// const listOfNeighbours = [
+//     ['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']
+// ];
  
-for (let i = 0; i < listOfNeighbours.length; i++) {
-    for (let y = 0; y < listOfNeighbours[i].length; y++) {
-        console.log(`Neighbour: ${listOfNeighbours[i][y]}`);
-    }
-}
+// for (let i = 0; i < listOfNeighbours.length; i++) {
+//     for (let y = 0; y < listOfNeighbours[i].length; y++) {
+//         console.log(`Neighbour: ${listOfNeighbours[i][y]}`);
+//     }
+// }
 
+////////////////////////////
+// The while Loop
 
+// const worldPopulation = 5000;
+// const population = [100, 200, 300, 400];
 
+// const precetages2 = []
+// for (let  i = 0; i < population.length; i++) {
+//     precetages2.push(population[i] * 100 / worldPopulation);
+// }
+// console.log(precetages2);
+
+// let rep = 0;
+// const precetages3 = [];
+// while (rep < population.length) {
+//     precetages3.push(population[rep] * 100 / worldPopulation);
+//     console.log(precetages3);
+//     rep++;
+
+// }
+
+// precetages2.push(population[i] * 100 / worldPopulation);
+// }
 
