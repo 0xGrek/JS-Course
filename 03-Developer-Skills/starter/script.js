@@ -36,19 +36,19 @@
 // - перевести масив в строку
 //  - tranform each element to string with 23ºC
 
-const data1 = [17, 21, 23];
-const data2 = [12, 5, -5, 0, 4];
+// const data1 = [17, 21, 23];
+// const data2 = [12, 5, -5, 0, 4];
 
-data1.toString();
-console.log(`...${data1[0]}C ...${data1[1]}C...${data1[2]}C...`);
+// data1.toString();
+// console.log(`...${data1[0]}C ...${data1[1]}C...${data1[2]}C...`);
 
-console.log(data1.toString());
+// console.log(data1.toString());
 
-const printForecast = function (arr) {
-  let str = "";
-  for (let i = 0; i < arr.length; i++) {
-    str = str + `${arr[i]}C in ${i + 1} days.`;
-  }
-  console.log(str);
-};
-printForecast(data1);
+// const printForecast = function (arr) {
+//   let str = "";
+//   for (let i = 0; i < arr.length; i++) {
+//     str = str + `${arr[i]}C in ${i + 1} days.`;
+//   }
+//   console.log(str);
+// };
+// printForecast(data1);
