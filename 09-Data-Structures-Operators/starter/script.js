@@ -148,33 +148,138 @@
 //   } is more likely to win`
 // );
 
-const weekdays = ['mon', 'tue', '3', 'thu', 'fri', 'sat', 'sun'];
-const openingHours = {
-  [weekdays[0]]: {
-    open: 12,
-    close: 22,
-  },
-  [weekdays[4]]: {
-    open: 11,
-    close: 23,
-  },
-  [weekdays[5]]: {
-    open: 0, // Open 24 hours
-    close: 24,
-  },
-};
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// };
+// for (const day of weekdays) {
+//   console.log(day);
+//   const open = openingHours[day]?.open ?? `closed`;
+//   console.log(`In ${day} we open at ${open}`);
+// }
 
-console.log(openingHours.mon?.open);
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+// };
 
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-};
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 // console.log(menu);
 
 // for (const item of menu) console.log(item);
 // for (const [i, j] of menu.entries()) console.log(`${i + 1}: ${j}`);
+
+// const users = [
+//   {
+//     name: `serhii`,
+//     age: 22,
+//   },
+// ];
+// console.log(users);
+
+// const users = [
+//   { name: 'my name', email: 'my email' },
+//   { name: 'your name', email: 'your email' },
+// ];
+
+// console.log(users[1].name ?? 'put in more users');
+
+// // example for different way to select the property in an object
+// const obj = {
+//   a: 5,
+//   b: 8,
+//   c: 7,
+// };
+// const aa = 'a';
+// console.log(obj.a); // most common way
+// console.log(obj['a']); // have to use string inside [ ]
+// console.log(obj[aa]); // be able to use variable as property name
+
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// const openingHours = {
+//   [weekdays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekdays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [weekdays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// };
+// const entries = Object.entries(openingHours)
+// console.log(entries);
+
+// for (const [key, {open, close}] of entries) {
+//   console.log(`On ${key} we open at ${open} and close at ${close}`);
+// }
+
+// ***********SET****************
+// const orderSet =
+// new Set ([
+//     `pasta`,
+//     `moloko`,
+//     `bread`,
+//     `moloko`,
+//     `tea`,
+//     `bread`,
+//     `tea`,
+//     `pizza`
+// ])
+// console.log(orderSet);
+// console.log(orderSet.size);
+// console.log(orderSet.has(`ff`));
+// orderSet.add(`MAXIMUM`);
+// orderSet.add(`MAXIMUM`);
+//  for (const order of orderSet) console.log(order);
+
+//  const staff = [`Viola`,`Anna`,`Anna`,`Anna`,`eduardo`,`Serhii`,`Isabel`,`Viola`,`Anna`,`Anna`,`Anna`,`eduardo`,`Serhii`,`Isabel`]
+// const callStaff = new Set(staff)
+
+//  console.log(callStaff);
+
+// **************MAPS***************
+const question = new Map([
+  [`questions`, `what is the bast pr language in the world?`],
+  [1, `c`],
+  [2, `Java`],
+  [3, `JS`],
+  [`correctttt`, 22],
+  [true, `Correct`],
+  [false, `try again`],
+]);
+
+console.log(question.get(`question`));
+for (const [key, value] of question) {
+  if (typeof key === `number`) console.log(`Answer ${key} : ${value}`);
+}
+
+console.log([...question]);
+console.log(question.entries());
+console.log(question.keys());
+console.log(question.values());
+// const answer = Number(prompt(`Your answer`));
+// console.log(answer);
+// const bull = prompt(`Your string`);
+
+// console.log(question.get(question.get(`correctttt`) === answer));
+// console.log(question.get(question.get(`true`) === bull));
+
+// console.log(question.get);

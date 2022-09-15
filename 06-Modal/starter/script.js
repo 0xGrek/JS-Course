@@ -8,7 +8,11 @@ console.log(btnOpenModal);
 
 const openModal = function () {
   modal.classList.remove(`hidden`);
+
+  
   overlay.classList.remove(`hidden`);
+
+
   //   console.log(`Button clicked`);
 };
 
