@@ -232,49 +232,63 @@
 // }
 
 // ***********SET****************
-// const orderSet =
-// new Set ([
-//     `pasta`,
-//     `moloko`,
-//     `bread`,
-//     `moloko`,
-//     `tea`,
-//     `bread`,
-//     `tea`,
-//     `pizza`
-// ])
+// const orderSet = new Set([
+//   `pasta`,
+//   `moloko`,
+//   `bread`,
+//   `moloko`,
+//   `tea`,
+//   `bread`,
+//   `tea`,
+//   `pizza`,
+// ]);
 // console.log(orderSet);
 // console.log(orderSet.size);
 // console.log(orderSet.has(`ff`));
 // orderSet.add(`MAXIMUM`);
 // orderSet.add(`MAXIMUM`);
-//  for (const order of orderSet) console.log(order);
+// for (const order of orderSet) console.log(order);
 
-//  const staff = [`Viola`,`Anna`,`Anna`,`Anna`,`eduardo`,`Serhii`,`Isabel`,`Viola`,`Anna`,`Anna`,`Anna`,`eduardo`,`Serhii`,`Isabel`]
-// const callStaff = new Set(staff)
+// const staff = [
+//   `Viola`,
+//   `Anna`,
+//   `Anna`,
+//   `Anna`,
+//   `eduardo`,
+//   `Serhii`,
+//   `Isabel`,
+//   `Viola`,
+//   `Anna`,
+//   `Anna`,
+//   `Anna`,
+//   `eduardo`,
+//   `Serhii`,
+//   `Isabel`,
+// ];
+// const callStaff = new Set(staff);
 
-//  console.log(callStaff);
+// console.log(callStaff);
 
 // **************MAPS***************
-const question = new Map([
-  [`questions`, `what is the bast pr language in the world?`],
-  [1, `c`],
-  [2, `Java`],
-  [3, `JS`],
-  [`correctttt`, 22],
-  [true, `Correct`],
-  [false, `try again`],
-]);
+// const question = new Map([
+//   [`questions`, `what is the bast pr language in the world?`],
+//   [1, `c`],
+//   [2, `Java`],
+//   [3, `JS`],
+//   [`correctttt`, 22],
+//   [true, `Correct`],
+//   [false, `try again`],
+// ]);
 
-console.log(question.get(`question`));
-for (const [key, value] of question) {
-  if (typeof key === `number`) console.log(`Answer ${key} : ${value}`);
-}
+// console.log(question.get(`question`));
+// for (const [key, value] of question) {
+//   if (typeof key === `number`) console.log(`Answer ${key} : ${value}`);
+// }
 
-console.log([...question]);
-console.log(question.entries());
-console.log(question.keys());
-console.log(question.values());
+// console.log([...question]);
+// console.log(question.entries());
+// console.log(question.keys());
+// console.log(question.values());
 // const answer = Number(prompt(`Your answer`));
 // console.log(answer);
 // const bull = prompt(`Your string`);
@@ -283,3 +297,43 @@ console.log(question.values());
 // console.log(question.get(question.get(`true`) === bull));
 
 // console.log(question.get);
+// const airLine = `TAP AIR Portugral`;
+
+// console.log(airLine.indexOf(`r`));
+// console.log(airLine.lastIndexOf(`r`));
+// console.log(airLine.indexOf(`Portugral`));
+
+// console.log(airLine.slice(5, 10));
+
+// console.log(airLine.slice(0, airLine.indexOf(` `)));
+// console.log(airLine.slice(airLine.lastIndexOf(` `) + 1));
+
+// console.log(airLine.slice(-2));
+// console.log(airLine.slice(1,));
+
+// const check = function (seat) {
+//   const s = seat.slice(-2);
+//   if (s === `B` || s === `E`) console.log(`OK`);
+//   else console.log(`NOT`);
+// };
+
+// check(`11232A`);
+// check(`223232B`);
+// check(`132332E`);
+const airLine = `TAP AIR Portugral`;
+console.log(airLine.toLowerCase());
+console.log(airLine.toUpperCase());
+
+const passanger = `SeRhIi`;
+const passangerLower = passanger.toLowerCase();
+const passangerCorrect =
+  passangerLower[0].toUpperCase() + passangerLower.slice(1);
+console.log(passangerCorrect);
+
+const random = 'OlEg SeRhiSoGdsfsfsspfS';
+const fix = function () {
+  const lowerCase = random.toLowerCase();
+  const text = lowerCase[0].toUpperCase() + lowerCase.slice(1);
+  console.log(text);
+};
+fix();

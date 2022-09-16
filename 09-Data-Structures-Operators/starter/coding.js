@@ -1,6 +1,7 @@
 'use strict';
 
 // const game = {
+
 //     team1: 'Bayern Munich',
 //     team2: 'Borrussia Dortmund',
 //     players: [
@@ -43,7 +44,6 @@
 // }
 //  ******************
 
-
 // const scores = {
 //     namePlayers: ['Lewandowski', 'Gnarby', 'Lewandowski',
 //     'Hummels'],
@@ -57,9 +57,9 @@
 //   console.log(scorers);
 // }
 
-// const myArray = ['a', 'b', 'c', 'd', 'e', 'b', 'c', 'b'];    
+// const myArray = ['a', 'b', 'c', 'd', 'e', 'b', 'c', 'b'];
 // const myCharCount = {};
- 
+
 // for (const char of myArray) {
 //   myCharCount[char] ? myCharCount[char]++ : (myCharCount[char] = 1);
 //   console.log(myCharCount)
@@ -84,12 +84,11 @@
 // 2.
 // const odds = Object.values(game.odds);
 // let avarage = 0 ;
-// for (const odd of  odds) 
+// for (const odd of  odds)
 //     avarage = avarage + odd;
 //     avarage = avarage / odds.length;
 // console.log(avarage)
 // 3.
- 
 
 // for (const [team, odd] of Object.entries(game.odds)){
 //     const strVictory = team === `x` ? `drow` : `victory ${game[team]}`
@@ -101,8 +100,6 @@
 // Odd of draw: 3.25
 // Odd of victory Borrussia Dortmund: 6.5
 // ///////////////////////
-
-
 
 //////////////////////
 // // 2.
@@ -139,3 +136,39 @@
 //     (team1 < team2 && game.team1) || (team2 < team1 && game.team2)
 //   } is more likely to win`
 // );
+
+// *********************3
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '� Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '� Substitution'],
+  [64, '� Yellow card'],
+  [69, '� Red card'],
+  [70, '� Substitution'],
+  [72, '� Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '� Yellow card'],
+]);
+// 1.
+// const events = new Set(gameEvents.keys());
+// console.log(events);
+// // const events1 = [...new Set(gameEvents.values())];
+// // console.log(events1);
+// 2.
+// events.delete(64);
+// console.log(events);
+// 3.
+// const events = [...new Set(gameEvents.keys())];
+// console.log(events);
+// console.log(`An event happened , every ${90 / gameEvents.size} minutes`);
+
+// const time = [...gameEvents.keys()].pop();
+// console.log(time);
+// console.log(`An event happened , every ${time / gameEvents.size} minutes`);
+// 4.
+// for (const [minut, event] of gameEvents) {
+// let half = minut <= 45 ? `FiRST` : `SECOND`;
+//   console.log(`[${half} HALF] : ${minut}, ${event}`);
+// }
