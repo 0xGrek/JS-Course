@@ -138,19 +138,19 @@
 // );
 
 // *********************3
-const gameEvents = new Map([
-  [17, '⚽ GOAL'],
-  [36, '� Substitution'],
-  [47, '⚽ GOAL'],
-  [61, '� Substitution'],
-  [64, '� Yellow card'],
-  [69, '� Red card'],
-  [70, '� Substitution'],
-  [72, '� Substitution'],
-  [76, '⚽ GOAL'],
-  [80, '⚽ GOAL'],
-  [92, '� Yellow card'],
-]);
+// const gameEvents = new Map([
+//   [17, '⚽ GOAL'],
+//   [36, '� Substitution'],
+//   [47, '⚽ GOAL'],
+//   [61, '� Substitution'],
+//   [64, '� Yellow card'],
+//   [69, '� Red card'],
+//   [70, '� Substitution'],
+//   [72, '� Substitution'],
+//   [76, '⚽ GOAL'],
+//   [80, '⚽ GOAL'],
+//   [92, '� Yellow card'],
+// ]);
 // 1.
 // const events = new Set(gameEvents.keys());
 // console.log(events);
@@ -172,3 +172,57 @@ const gameEvents = new Map([
 // let half = minut <= 45 ? `FiRST` : `SECOND`;
 //   console.log(`[${half} HALF] : ${minut}, ${event}`);
 // }
+//  ***********************************4
+// const departure = function (name) {
+//   const names = name.split(` `);
+//   const bigCase = [];
+//   for (const n of names) {
+//     console.log(names);
+//   }
+// };
+// console.log();
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener(`click`, function () {
+  const text = document.querySelector(`textarea`).value;
+  const rows = text.split(`\n`);
+
+  for (const row of rows) {
+    const [firstName, secondName] = row.toLowerCase().trim().split(`_`);
+    const correctName = `${firstName}${secondName.replace(
+      secondName[0],
+      secondName[0].toUpperCase()
+    )}`;
+    console.log(correctName);
+    // console.log(firstName, secondName, row);
+  }
+
+  console.log(rows);
+  console.log(text);
+});
+// console.log(logo);
+// console.log(upperLogo);
+// console.log(upLogo);
+// console.log(lowLogo);
+
+// currentText(`delayed_departure`);
+//1. delayed_departure
+// const [firstName, secondName] = `delayed_departure`.split(`_`);
+// const newName = [firstName, secondName[0].toUpperCase() + secondName.slice(1)];
+// console.log(newName.join(``));
+// 2. calculate_AGE
+// const [firstName, secondName] = `calculate_AGE`.split(`_`);
+// const newName = firstName + secondName.toUpperCase();
+// const lastName = secondName[0].toLowerCase();
+
+// console.log(lastName);
+// console.log(newName);
+// console.log(firstName, secondName);
+
+// underscore_case
+// first_name
+// Some_Variable
+//  calculate_AGE
+//

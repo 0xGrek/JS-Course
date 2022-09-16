@@ -320,20 +320,61 @@
 // check(`11232A`);
 // check(`223232B`);
 // check(`132332E`);
-const airLine = `TAP AIR Portugral`;
-console.log(airLine.toLowerCase());
-console.log(airLine.toUpperCase());
+// const airLine = `TAP AIR Portugral`;
+// console.log(airLine.toLowerCase());
+// console.log(airLine.toUpperCase());
 
-const passanger = `SeRhIi`;
-const passangerLower = passanger.toLowerCase();
-const passangerCorrect =
-  passangerLower[0].toUpperCase() + passangerLower.slice(1);
-console.log(passangerCorrect);
+// const passanger = `SeRhIi`;
+// const passangerLower = passanger.toLowerCase();
+// const passangerCorrect =
+//   passangerLower[0].toUpperCase() + passangerLower.slice(1);
+// console.log(passangerCorrect);
 
-const random = 'OlEg SeRhiSoGdsfsfsspfS';
-const fix = function () {
-  const lowerCase = random.toLowerCase();
-  const text = lowerCase[0].toUpperCase() + lowerCase.slice(1);
-  console.log(text);
-};
-fix();
+// const random = 'OlEg SeRhiSoGdsfsfsspfS';
+// const fix = function () {
+//   const lowerCase = random.toLowerCase();
+//   const text = lowerCase[0].toUpperCase() + lowerCase.slice(1);
+//   console.log(text);
+// };
+// fix();
+
+// const email = ` ivanneko.pt@gmail.com`;
+// const badEmail = `Vsgseno.Pt@gmIal.com`;
+
+// const lowerEmail = badEmail.toLowerCase().trim();
+
+// const priceGB = `288,97$`;
+// const priceUS = priceGB.replace(`$`, `@`).replace(`,`, `.`);
+// console.log(priceGB);
+// console.log(priceUS);
+// const send = `all people who have all bitcoin all`;
+
+// console.log(send.replace(/all/g, `1`));
+// const [fistName, lastName] = `Serhii Ivanenko`.split(` `);
+// // console.log(fistName, lastName);
+// let text = 'How are you doing today?';
+// const myArray = text.slice('-3, 3');
+// // const myArray = text.split(' ', 3);
+// let word = myArray[0];
+// console.log(myArray);
+// console.log(word);
+// FUNCTION
+// const calc = function (name) {
+//   const names = name.split(` `);
+//   const namesUpper = [];
+//   console.log();
+//   for (const n of names) {
+//     namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//   }
+//   console.log(namesUpper.join(` `));
+// };
+// calc(`serhii adnrii and violetta go to the football`);
+
+// const maskCreditCard = function (number) {
+//   const str = number + ``;
+//   const last = str.slice(-4);
+//   return last.padStart(str.length, `*`);
+// };
+
+// console.log(maskCreditCard(2342424234224234));
+// console.log(maskCreditCard(`2342424234202111`));
