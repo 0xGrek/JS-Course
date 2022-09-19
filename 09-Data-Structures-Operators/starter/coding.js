@@ -182,26 +182,26 @@
 // };
 // console.log();
 
-document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button'));
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
 
-document.querySelector('button').addEventListener(`click`, function () {
-  const text = document.querySelector(`textarea`).value;
-  const rows = text.split(`\n`);
+// document.querySelector('button').addEventListener(`click`, function () {
+//   const text = document.querySelector(`textarea`).value;
+//   const rows = text.split(`\n`);
 
-  for (const row of rows) {
-    const [firstName, secondName] = row.toLowerCase().trim().split(`_`);
-    const correctName = `${firstName}${secondName.replace(
-      secondName[0],
-      secondName[0].toUpperCase()
-    )}`;
-    console.log(correctName);
-    // console.log(firstName, secondName, row);
-  }
+//   for (const row of rows) {
+//     const [firstName, secondName] = row.toLowerCase().trim().split(`_`);
+//     const correctName = `${firstName}${secondName.replace(
+//       secondName[0],
+//       secondName[0].toUpperCase()
+//     )}`;
+//     console.log(correctName);
+//     // console.log(firstName, secondName, row);
+//   }
 
-  console.log(rows);
-  console.log(text);
-});
+//   console.log(rows);
+//   console.log(text);
+// });
 // console.log(logo);
 // console.log(upperLogo);
 // console.log(upLogo);
