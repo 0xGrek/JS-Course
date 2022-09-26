@@ -155,3 +155,25 @@
 // const bookEW23 = book.bind(eurowings, 999);
 // bookEW23('Jonas Schmedtmann');
 // bookEW23('Martha Cooper');
+
+// function greeting() {
+//   let message = 'Hi';
+
+//   function sayHi() {
+//     console.log(message);
+//   }
+
+//   return sayHi;
+// }
+// let hi = greeting();
+// hi(); // still can access the message variable
+
+// function greeting() {
+//   let message = 'Hi';
+
+//   function sayHi() {
+//     console.log(message);
+//   }
+//   sayHi();
+// }
+// greeting();
