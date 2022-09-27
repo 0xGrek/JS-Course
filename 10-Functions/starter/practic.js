@@ -54,13 +54,13 @@
 //   });
 // })();
 
-(function () {
-  const header = document.querySelector('h1');
-  let red = (header.style.color = 'red');
+// (function () {
+//   const header = document.querySelector('h1');
+//   let red = (header.style.color = 'red');
 
-  const toggleColor = () => {
-    let blue = (header.style.color = 'blue');
-    red ? blue : red;
-  };
-  document.body.addEventListener('click', toggleColor);
-})();
+//   const toggleColor = () => {
+//     let blue = (header.style.color = 'blue');
+//     red ? blue : red;
+//   };
+//   document.body.addEventListener('click', toggleColor);
+// })();
