@@ -11,9 +11,17 @@
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-
+// //////////// FILTER
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// const withdrawal = movements.filter(function (price) {
+//   return price < 0;
+// });
+// console.log(withdrawal);
+
+// const withdrawalTo = [];
+// for (const ppris of movements) if (ppris < 0) withdrawalTo.push(ppris);
+// console.log(withdrawalTo);
 // // for (const movement of movements) {
 // for (const [i, movement] of movements.entries()) {
 //   if (movement > 0) {

@@ -61,10 +61,10 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// Показать счет
 const displayMovements = function (movements) {
   // Удалить содержимое HTML
   containerMovements.innerHTML = ``;
-
   movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
@@ -73,14 +73,86 @@ const displayMovements = function (movements) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov}👍</div>
       </div>
     `;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
+// Общее количество денег
+const clacDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance} 👍`;
+};
+//Резюме всех сумм внизу
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements // сколько зашло денег
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}`;
+
+  const out = acc.movements // сколько  вывелось
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}`;
+
+  const interest = acc.movements // invest
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * acc.interestRate) / 100)
+    .filter((int, i, arr) => {
+      // console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}`;
+};
+// Name пользователей
+const createUserNames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(` `)
+      .map(name => name[0])
+      .join(``);
+    // console.log(acc.username);
+  });
+};
+createUserNames(accounts);
+// Update UI
+const updateUI = function (acc) {
+  // Дисплей движений MOVEMENTS
+  displayMovements(acc.movements);
+  // Дисплей баланса
+  clacDisplayBalance(acc);
+  // Дисплей резюме всех сум SUMMARY
+  calcDisplaySummary(acc);
+};
+// EVENT LISTENER***************
+let currentAccount;
+btnLogin.addEventListener(`click`, function (e) {
+  e.preventDefault(); //предотвратить отправку формы
+  // поиск логина
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  // поиск пароля
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Дисплей приветствия
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(` `)[0]
+    }`;
+    containerApp.style.opacity = 100; //манипуляция со стилем
+    // Display input fields
+    inputLoginUsername.value = inputLoginPin.value = ``;
+
+    inputLoginPin.blur();
+    // Update UI CALL
+    updateUI(currentAccount);
+  }
+  console.log(currentAccount);
+  // console.log(`LOGIN`);
+});
 /////////////////////// ДЛЯ пониманияя.
 // const user = 'Steven Thomas Williams'; // stw
 //  УКОРОЧЕНАЯ ВЕРСИЯ
@@ -93,16 +165,39 @@ displayMovements(account1.movements);
 //   .join(``);
 // console.log(userName);
 
-const createUserNames = function (accs) {
-  accs.forEach(function (acc) {
-    acc.username = acc.owner
-      .toLowerCase()
-      .split(` `)
-      .map(name => name[0])
-      .join(``);
-    console.log(acc.username);
-  });
-};
+// CONVERTING PIPELINE
+// For converting EUR
+// const eurToUsd = 1.1;
+// const totalDepositsUSD = account1.movements
+//   .filter(mov => mov > 0)
+//   .map((mov, i, arr) => {
+//     // console.log(arr);
+//     return mov * eurToUsd;
+//   })
+//   // .map((mov, i, arr) => mov * eurToUsd)
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(totalDepositsUSD);
 
-createUserNames(accounts);
-console.log(accounts);
+btnTransfer.addEventListener(`click`, function (e) {
+  // Что бы не было перезагрузки страницы
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const reciverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  inputTransferAmount.value = inputTransferTo.value = ``;
+
+  if (
+    amount > 0 &&
+    currentAccount.balance >= amount &&
+    reciverAcc?.username !== currentAccount.username
+  ) {
+    // Doing to transfer
+    currentAccount.movements.push(-amount);
+    reciverAcc.movements.push(amount);
+    console.log(`Valid`);
+
+    // Update UI CALL
+    updateUI(currentAccount);
+  }
+});
