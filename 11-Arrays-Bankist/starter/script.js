@@ -62,18 +62,21 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Показать счет
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   // Удалить содержимое HTML
   containerMovements.innerHTML = ``;
-  movements.forEach(function (mov, i) {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}">${
+        <div class="movements__type movements__type--${type}€">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}👍</div>
+        <div class="movements__value">${mov}€</div>
       </div>
     `;
 
@@ -83,7 +86,7 @@ const displayMovements = function (movements) {
 // Общее количество денег
 const clacDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance} 👍`;
+  labelBalance.textContent = `${acc.balance}€ `;
 };
 //Резюме всех сумм внизу
 const calcDisplaySummary = function (acc) {
@@ -178,7 +181,6 @@ btnClose.addEventListener(`click`, function (e) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
     );
-    // console.log(index);
     // Delete account
     accounts.splice(index, 1);
     containerApp.style.opacity = 0; //скрыть контейнер
@@ -235,6 +237,14 @@ btnTransfer.addEventListener(`click`, function (e) {
     updateUI(currentAccount);
   }
 });
+// BTN SORT
+let sorted = false;
+btnSort.addEventListener(`click`, function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  //  если мы снова нажимаем на кнопку
+  sorted = !sorted;
+});
 
 // const arr = [5000, 3400, [-150, -790], -3210, -1000, [8500, -30]];
 // console.log(arr);
@@ -248,5 +258,34 @@ btnTransfer.addEventListener(`click`, function (e) {
 //   .join(`-`);
 // console.log(arr3);
 
-const owners = [`jonas`, `Addam`, `Andrii`, `Serhii`];
-console.log(owners.sort());
+// const owners = [`jonas`, `Addam`, `Andrii`, `Serhii`];
+// console.log(owners.sort());
+// const acc1 = account1.movements;
+// acc1.sort((a, b) => {
+//   return a - b;
+// });
+// console.log(acc1);
+
+// const points = [40, 100, 1, 5, 25, 10];
+// points.sort(function (a, b) {
+//   return a - b;
+// });
+// console.log(points);
+
+// const x = new Array(7);
+
+// x.fill(1, 3, 5);
+// console.log(x);
+// const y = Array.from(
+//   { length: 100 },
+//   (cur, i) => (i = Math.trunc(Math.random() * 100) + 1)
+// );
+// console.log(y);
+
+labelBalance.addEventListener(`click`, function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll(`.movements__value`),
+    el => Number(el.textContent.replace(`€`, ``))
+  );
+  // console.log(movementsUI);
+});
