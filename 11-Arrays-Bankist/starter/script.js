@@ -128,7 +128,7 @@ const updateUI = function (acc) {
   // Дисплей резюме всех сум SUMMARY
   calcDisplaySummary(acc);
 };
-// EVENT LISTENER***************
+// EVENT LISTENER********* BTN TRANSFER******
 let currentAccount;
 btnLogin.addEventListener(`click`, function (e) {
   e.preventDefault(); //предотвратить отправку формы
@@ -153,6 +153,40 @@ btnLogin.addEventListener(`click`, function (e) {
   console.log(currentAccount);
   // console.log(`LOGIN`);
 });
+// LOAN BTN
+btnLoan.addEventListener(`click`, function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // add mmovements
+    currentAccount.movements.push(amount);
+    // Update UI
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = ``;
+});
+// CLOSE ACCOUNT
+btnClose.addEventListener(`click`, function (e) {
+  e.preventDefault();
+
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    currentAccount?.pin === Number(inputClosePin.value)
+  ) {
+    // Удаляет индекс текущего аккаунтра
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    // console.log(index);
+    // Delete account
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 0; //скрыть контейнер
+  }
+  // Display input fields
+  inputCloseUsername.value = inputClosePin.value = ``;
+});
+
 /////////////////////// ДЛЯ пониманияя.
 // const user = 'Steven Thomas Williams'; // stw
 //  УКОРОЧЕНАЯ ВЕРСИЯ
@@ -185,7 +219,7 @@ btnTransfer.addEventListener(`click`, function (e) {
   const reciverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
-  inputTransferAmount.value = inputTransferTo.value = ``;
+  inputTransferAmount.value = inputTransferTo.value = ` `;
 
   if (
     amount > 0 &&
@@ -201,3 +235,18 @@ btnTransfer.addEventListener(`click`, function (e) {
     updateUI(currentAccount);
   }
 });
+
+// const arr = [5000, 3400, [-150, -790], -3210, -1000, [8500, -30]];
+// console.log(arr);
+
+// const arr2 = arr.flat();
+// console.log(arr2);
+
+// const arr3 = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .join(`-`);
+// console.log(arr3);
+
+const owners = [`jonas`, `Addam`, `Andrii`, `Serhii`];
+console.log(owners.sort());
