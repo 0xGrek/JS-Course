@@ -172,23 +172,23 @@ const summ = accounts
 // console.log(deposits, withdrawal);
 
 // 4. CONVERTING FUNCTION
-const convertTitleCase = function (title) {
-  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+// const convertTitleCase = function (title) {
+//   const capitalize = str => str[0].toUpperCase() + str.slice(1);
 
-  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+//   const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
 
-  const titleCase = title
-    .toLowerCase()
-    .split(' ')
-    // Новый масив с болшоай буквой
-    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
-    .join(` `);
+//   const titleCase = title
+//     .toLowerCase()
+//     .split(' ')
+//     // Новый масив с болшоай буквой
+//     .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+//     .join(` `);
 
-  return capitalize(titleCase);
-};
+//   return capitalize(titleCase);
+// };
 
-console.log(convertTitleCase('this is a nice title'));
-console.log(convertTitleCase('this is a LONG title but not too long'));
-console.log(convertTitleCase('and here is another title with an EXAMPLE'));
+// console.log(convertTitleCase('this is a nice title'));
+// console.log(convertTitleCase('this is a LONG title but not too long'));
+// console.log(convertTitleCase('and here is another title with an EXAMPLE'));
 
 // 5. CODDING CHALENGE

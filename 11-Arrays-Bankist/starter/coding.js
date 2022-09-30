@@ -63,8 +63,8 @@
 // };
 // calcAvarageHumanAge(dogAges);
 // calcAvarageHumanAge(dogAges2);
-// #3  REVRITE to cHANGING
 
+// #3  REVRITE to cHANGING
 // const calcAvarageHumanAge = ages => {
 //   const humanAges = ages
 //     .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
@@ -76,3 +76,51 @@
 // };
 // calcAvarageHumanAge(dogAges);
 // calcAvarageHumanAge(dogAges2);
+
+// #4***************
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+// 1.
+dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+console.log(dogs);
+// 2. find sara dog
+const dogSarah = dogs.find(dog => dog.owners.includes(`Sarah`));
+console.log(
+  `Sara dog is eating  to ${
+    dogSarah.curFood > dogSarah.recFood ? `much` : `litle`
+  }`
+);
+// 3.
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recFood)
+  .map(dog => dog.owners)
+  .flat();
+const EatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recFood)
+  .flatMap(dog => dog.owners);
+console.log(EatTooLittle, ownersEatTooMuch);
+// 4.
+console.log(
+  `${ownersEatTooMuch.join(` and `)} dogs eat too much! and ${EatTooLittle.join(
+    ` and `
+  )} dogs eat too little!`
+);
+// 5.
+dogs.every(dog => dog.curFood === dog.recFood);
+console.log(dogs.some(dog => dog.curFood === dog.recFood));
+// 6.
+const checkTrueFunc = dog =>
+  dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+
+console.log(dogs.some(checkTrueFunc));
+// 7.
+console.log(dogs.filter(checkTrueFunc));
+// 8.
+
+const copy = dogs.slice().sort((a, b) => a.recFood - b.recFood);
+console.log(copy);
