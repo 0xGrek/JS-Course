@@ -63,8 +63,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 // Показать счет
 const displayMovements = function (movements, sort = false) {
-  // Удалить содержимое HTML
-  containerMovements.innerHTML = ``;
+  containerMovements.innerHTML = '';
 
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
@@ -73,7 +72,7 @@ const displayMovements = function (movements, sort = false) {
 
     const html = `
       <div class="movements__row">
-        <div class="movements__type movements__type--${type}€">${
+        <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
         <div class="movements__value">${mov}€</div>

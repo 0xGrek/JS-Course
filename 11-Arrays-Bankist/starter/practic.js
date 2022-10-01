@@ -136,17 +136,17 @@
 // }, 0);
 // console.log(numDep1000);
 // *******************
-// 3.
-const summ = accounts
-  .flatMap(acc => acc.movements)
-  .reduce(
-    (sums, cur) => {
-      sums[cur > 0 ? `deposits` : `withdrawal`] += cur;
-      return sums;
-    },
-    // помогает во многих ситуациях
-    { deposits: 0, withdrawal: 0 }
-  );
+// // 3.
+// const summ = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce(
+//     (sums, cur) => {
+//       sums[cur > 0 ? `deposits` : `withdrawal`] += cur;
+//       return sums;
+//     },
+//     // помогает во многих ситуациях
+//     { deposits: 0, withdrawal: 0 }
+//   );
 // *** REDUCE ***
 // const summ1 = accounts.reduce(
 //   (sums, cur) => {
