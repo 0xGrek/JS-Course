@@ -288,3 +288,8 @@ labelBalance.addEventListener(`click`, function () {
   );
   // console.log(movementsUI);
 });
+
+function myFunction() {
+  const popup = document.getElementById('myPopup');
+  popup.classList.toggle('show');
+}

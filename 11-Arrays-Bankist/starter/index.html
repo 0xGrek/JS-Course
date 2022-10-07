@@ -5,7 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+  <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+  <link rel="icon" href="icon.png" type="image/x-icon">
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
 
@@ -14,8 +16,10 @@
 </head>
 
 <body>
+
   <!-- TOP NAVIGATION -->
   <nav>
+
     <p class="welcome">Log in to get started</p>
     <img src="logo.png" alt="Logo" class="logo" />
     <form class="login">
@@ -24,6 +28,14 @@
       <input type="text" placeholder="PIN" maxlength="4" class="login__input login__input--pin" />
       <button class="login__btn">&rarr;</button>
     </form>
+    <div class="popup" onclick="myFunction()">
+      Click before start
+      <span class="popuptext" id="myPopup">Account1 - user: js, PIN: 1111 <br> Account2 - user: jd, PIN: 2222 <br>
+        Account3 - user: stw, PIN:
+        3333 <br> Account4
+        - user: ss, PIN: 4444 <br> It is possible to transfer money from one account to another. + account
+        closure.</span>
+    </div>
   </nav>
 
   <main class="app">
