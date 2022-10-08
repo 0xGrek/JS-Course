@@ -21,9 +21,9 @@ const account1 = {
     '2020-01-28T09:15:04.904Z',
     '2020-04-01T10:17:24.185Z',
     '2020-05-08T14:11:59.604Z',
-    '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2020-01-05T17:01:17.194Z',
+    '2020-01-02T23:00:17.929Z',
+    '2020-01-01T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -81,22 +81,38 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const formatMovementDate = function (date, locale) {
+  const calcDaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+  const daysPassed = calcDaysPassed(new Date(), date);
+  console.log(daysPassed);
+  console.log(date);
+  if (daysPassed === 0) return `Today`;
+  if (daysPassed === 1) return `Yesterday`;
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  else {
+    // const day = `${date.getDate()}`.padStart(2, 0);
+    // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    // const year = date.getFullYear();
+    // return `${day}/ ${month}/${year}`;
+    return new Intl.DateTimeFormat(locale).format(date);
+  }
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
-
+  // sprting
   const movs = sort
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
-  console.log(acc.movements);
+
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
+    // display date
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0); // обезательно перед в строку перед padStart
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-
-    const displayDate = `${day}/ ${month}/${year}`;
+    const displayDate = formatMovementDate(date, acc.locale);
 
     const html = `
       <div class="movements__row">
@@ -169,16 +185,22 @@ let currentAccount;
 currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
-
+// Experement with API
 const now = new Date();
-const day = `${now.getDate()}`.padStart(2, 0); // обезательно перед в строку перед padStart
-const month = `${now.getMonth() + 1}`.padStart(2, 0);
-const year = now.getFullYear();
-const hour = now.getHours();
-const min = now.getMinutes();
+const options = {
+  hour: `numeric`,
+  minute: `numeric`,
+  day: `numeric`,
+  month: `long`,
+  year: `numeric`,
+  weekday: `long`,
+};
 
-labelDate.textContent = `${day}/ ${month}/${year}, ${hour}:${min}`;
-console.log(now.getFullYear());
+// наше местоположение
+const locale = currentAccount.locale;
+console.log(locale);
+
+labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now);
 
 //day month year
 
@@ -197,16 +219,30 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
-    // current date
+    // current date and time
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0); // обезательно перед в строку перед padStart
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const min = `${now.getMinutes()}`.padStart(2, 0);
+    const options = {
+      hour: `numeric`,
+      minute: `numeric`,
+      day: `numeric`,
+      month: `long`,
+      year: `numeric`,
+      // weekday: `long`,
+    };
+    //  change language according country locale
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
 
-    labelDate.textContent = `${day}/ ${month}/${year}, ${hour}:${min}`;
-    console.log(now.getFullYear());
+    // const day = `${now.getDate()}`.padStart(2, 0); // обезательно перед в строку перед padStart
+    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    // const year = now.getFullYear();
+    // const hour = `${now.getHours()}`.padStart(2, 0);
+    // const min = `${now.getMinutes()}`.padStart(2, 0);
+
+    // labelDate.textContent = `${day}/ ${month}/${year}, ${hour}:${min}`;
+    // console.log(now.getFullYear());
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -236,8 +272,8 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAcc.movements.push(amount);
 
     // add transer date
-    currentAccount.movementsDates.push(new Date().toISOString);
-    receiverAcc.movementsDates.push(new Date().toISOString);
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAcc.movementsDates.push(new Date().toISOString());
 
     // Update UI
     updateUI(currentAccount);
@@ -286,7 +322,6 @@ btnClose.addEventListener('click', function (e) {
 });
 
 let sorted = false;
-// const sorted = acc.movements.slice().sort((cur, next) => next[0] - cur[0]);
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -328,17 +363,16 @@ btnSort.addEventListener('click', function (e) {
 // // DECIMALS
 // console.log((2.9).toFixed(0));
 // console.log((2.7).toFixed(2));
+// const isEven = n => n % 2 === 0;
+// console.log(isEven(8));
+// labelBalance.addEventListener(`click`, function () {
+//   [...document.querySelectorAll(`.movements__row`)].forEach(function (row, i) {
+//     if (i % 2 === 0) row.style.backgroundColor = `orangered`;
+//   });
+// });
 
-const isEven = n => n % 2 === 0;
-console.log(isEven(8));
-labelBalance.addEventListener(`click`, function () {
-  [...document.querySelectorAll(`.movements__row`)].forEach(function (row, i) {
-    if (i % 2 === 0) row.style.backgroundColor = `orangered`;
-  });
-});
-
-console.log(+`999`);
-// Practic ***************************************88
+// console.log(+`999`);
+// WIRKING WITH DATES ***************************************88
 // const now = new Date();
 // console.log(new Date(account1.movementsDates[0]));
 // console.log(account1);
@@ -346,3 +380,16 @@ console.log(+`999`);
 // console.log(now);
 
 // console.log(new Date(1665169900091));
+
+// 177 op witth DATES
+const future = new Date(2022, 10, 10, 43, 11);
+console.log(+future);
+
+const calcDaysPassed = (date1, date2) =>
+  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+const days1 = calcDaysPassed(
+  new Date(2022, 1, 10, 43, 11),
+  new Date(2021, 2, 10, 43, 11)
+);
+console.log(days1);
