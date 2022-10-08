@@ -86,8 +86,8 @@ const formatMovementDate = function (date, locale) {
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
   const daysPassed = calcDaysPassed(new Date(), date);
-  console.log(daysPassed);
-  console.log(date);
+  // console.log(daysPassed);
+  // console.log(date);
   if (daysPassed === 0) return `Today`;
   if (daysPassed === 1) return `Yesterday`;
   if (daysPassed <= 7) return `${daysPassed} days ago`;
@@ -114,13 +114,19 @@ const displayMovements = function (acc, sort = false) {
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date, acc.locale);
 
+    // display euro ISO standart
+    const formattedMov = new Intl.NumberFormat(acc.locale, {
+      style: `currency`,
+      currency: `USD`,
+    });
+
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
     <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMov}€</div>
       </div>
     `;
 
@@ -384,12 +390,28 @@ btnSort.addEventListener('click', function (e) {
 // 177 op witth DATES
 const future = new Date(2022, 10, 10, 43, 11);
 console.log(+future);
-
+// CONVERTATOR DATA FORM SEC To Day
 const calcDaysPassed = (date1, date2) =>
   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
 
 const days1 = calcDaysPassed(
   new Date(2022, 1, 10, 43, 11),
-  new Date(2021, 2, 10, 43, 11)
+  new Date(2021, 1, 10, 43, 11)
 );
 console.log(days1);
+// 179
+const num = 22832299;
+const options1 = {
+  style: `currency`,
+  unit: `mile-per-hour`,
+  currency: `EUR`,
+  useGrouping: false,
+};
+
+console.log(new Intl.NumberFormat(`en-US`, options1).format(num));
+console.log(new Intl.NumberFormat(`pt-PT`, options1).format(num));
+console.log(new Intl.NumberFormat(`ar-Sy`, options1).format(num));
+console.log(
+  navigator.language,
+  new Intl.NumberFormat(navigator.language).format(num)
+);
