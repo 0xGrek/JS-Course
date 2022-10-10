@@ -80,6 +80,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 // Functions
+let currentAccount, timer;
 
 const formatMovementDate = function (date, locale) {
   const calcDaysPassed = (date1, date2) =>
@@ -99,13 +100,36 @@ const formatMovementDate = function (date, locale) {
     return new Intl.DateTimeFormat(locale).format(date);
   }
 };
-
 // display euro ISO standart
 const formatCur = function (value, locale, currency) {
   return new Intl.NumberFormat(locale, {
     style: `currency`,
     currency: currency,
   }).format(value);
+};
+// timer
+const startLogOutTimer = function () {
+  //set time to 5 minutes
+  let time = 600;
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    //  in ieach call, print the reamining time to UI
+    labelTimer.textContent = `${min}: ${sec}`;
+
+    // When 0 seconds, stop timer and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log it to get started`;
+      containerApp.style.opacity = 0;
+    }
+    // decrease 1s
+    time = time - 1;
+  };
+  // call timmer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
 };
 
 const displayMovements = function (acc, sort = false) {
@@ -191,30 +215,26 @@ const updateUI = function (acc) {
 
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
 
 // FAKE ASLWAYSLOGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 // Experement with API
-const now = new Date();
-const options = {
-  hour: `numeric`,
-  minute: `numeric`,
-  day: `numeric`,
-  month: `long`,
-  year: `numeric`,
-  weekday: `long`,
-};
+// const now = new Date();
+// const options = {
+//   hour: `numeric`,
+//   minute: `numeric`,
+//   day: `numeric`,
+//   month: `long`,
+//   year: `numeric`,
+//   weekday: `long`,
+// };
 
 // наше местоположение
-const locale = currentAccount.locale;
-console.log(locale);
-
-labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now);
-
-//day month year
+// const locale = currentAccount.locale;
+// //day month year
+// labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now);
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -223,7 +243,6 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  // console.log(currentAccount);
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
@@ -247,18 +266,13 @@ btnLogin.addEventListener('click', function (e) {
       options
     ).format(now);
 
-    // const day = `${now.getDate()}`.padStart(2, 0); // обезательно перед в строку перед padStart
-    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    // const year = now.getFullYear();
-    // const hour = `${now.getHours()}`.padStart(2, 0);
-    // const min = `${now.getMinutes()}`.padStart(2, 0);
-
-    // labelDate.textContent = `${day}/ ${month}/${year}, ${hour}:${min}`;
-    // console.log(now.getFullYear());
-
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
+
+    // start LOGOUT timer  и запуск таймреа снова при входе в другой аккаунт
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
 
     // Update UI
     updateUI(currentAccount);
@@ -287,6 +301,10 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movementsDates.push(new Date().toISOString());
     receiverAcc.movementsDates.push(new Date().toISOString());
 
+    // resset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -305,7 +323,11 @@ btnLoan.addEventListener('click', function (e) {
       currentAccount.movementsDates.push(new Date().toISOString());
       // Update UI
       updateUI(currentAccount);
-    }, 2500);
+
+      // resset timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
+    }, 1500);
   }
 
   inputLoanAmount.value = '';
@@ -322,12 +344,14 @@ btnClose.addEventListener('click', function (e) {
       acc => acc.username === currentAccount.username
     );
     console.log(index);
-    // .indexOf(23)
 
     // Delete account
     accounts.splice(index, 1);
+    // cahange welcome
+    labelWelcome.textContent = `Log it to get started`;
 
     // Hide UI
+
     containerApp.style.opacity = 0;
   }
 
@@ -423,16 +447,16 @@ btnSort.addEventListener('click', function (e) {
 //   new Intl.NumberFormat(navigator.language).format(num)
 // );
 // 180
-const indgredients = [`olivves`, `jjj`];
-const pizzaTimer = setTimeout(
-  (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2}`),
-  3000,
-  ...indgredients
-);
-console.log();
-console.log(`waiting`);
+// const indgredients = [`olivves`, `jjj`];
+// const pizzaTimer = setTimeout(
+//   (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2}`),
+//   3000,
+//   ...indgredients
+// );
+// console.log();
+// console.log(`waiting`);
 
-if (indgredients.includes(`spinach`)) clearTimeout(pizzaTimer);
+// if (indgredients.includes(`spinach`)) clearTimeout(pizzaTimer);
 //  Again repeat;
 // setInterval(function () {
 //   const date = new Date();
@@ -461,3 +485,11 @@ if (indgredients.includes(`spinach`)) clearTimeout(pizzaTimer);
 //     }).format(new Date())
 //   );
 // }, 1000);
+
+console.log(Number.parseInt('30px', 10));
+console.log(Number.parseInt('e23', 10));
+
+console.log(Number.parseInt('  2.5rem  '));
+console.log(Number.parseFloat('  2.5rem  '));
+
+// console.log(parseFloat('  2.5rem  '));
