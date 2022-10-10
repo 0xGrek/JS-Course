@@ -100,6 +100,14 @@ const formatMovementDate = function (date, locale) {
   }
 };
 
+// display euro ISO standart
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: `currency`,
+    currency: currency,
+  }).format(value);
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
   // sprting
@@ -115,10 +123,7 @@ const displayMovements = function (acc, sort = false) {
     const displayDate = formatMovementDate(date, acc.locale);
 
     // display euro ISO standart
-    const formattedMov = new Intl.NumberFormat(acc.locale, {
-      style: `currency`,
-      currency: `USD`,
-    });
+    const formattedMov = formatCur(mov, acc.locale, acc.currency);
 
     const html = `
       <div class="movements__row">
@@ -126,7 +131,7 @@ const displayMovements = function (acc, sort = false) {
       i + 1
     } ${type}</div>
     <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${formattedMov}€</div>
+        <div class="movements__value">${formattedMov}</div>
       </div>
     `;
 
@@ -136,19 +141,20 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+  // баланс в  ISO валюте
+  labelBalance.textContent = formatCur(acc.balance, acc.locale, acc.currency);
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formatCur(incomes, acc.locale, acc.currency);
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+  labelSumOut.textContent = formatCur(Math.abs(out), acc.locale, acc.currency);
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -158,7 +164,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCur(interest, acc.locale, acc.currency);
 };
 
 const createUsernames = function (accs) {
@@ -291,14 +297,15 @@ btnLoan.addEventListener('click', function (e) {
 
   const amount = Math.floor(inputLoanAmount.value);
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
-
-    // add transer date
-    currentAccount.movementsDates.push(new Date().toISOString());
-
-    // Update UI
-    updateUI(currentAccount);
+    // таймер как в банке, когда берешь кредит
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
+      // add transer date
+      currentAccount.movementsDates.push(new Date().toISOString());
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
 
   inputLoanAmount.value = '';
@@ -388,30 +395,69 @@ btnSort.addEventListener('click', function (e) {
 // console.log(new Date(1665169900091));
 
 // 177 op witth DATES
-const future = new Date(2022, 10, 10, 43, 11);
-console.log(+future);
-// CONVERTATOR DATA FORM SEC To Day
-const calcDaysPassed = (date1, date2) =>
-  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+// const future = new Date(2022, 10, 10, 43, 11);
+// console.log(+future);
+// // CONVERTATOR DATA FORM SEC To Day
+// const calcDaysPassed = (date1, date2) =>
+//   Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
 
-const days1 = calcDaysPassed(
-  new Date(2022, 1, 10, 43, 11),
-  new Date(2021, 1, 10, 43, 11)
-);
-console.log(days1);
+// const days1 = calcDaysPassed(
+//   new Date(2022, 1, 10, 43, 11),
+//   new Date(2021, 1, 10, 43, 11)
+// );
+// console.log(days1);
 // 179
-const num = 22832299;
-const options1 = {
-  style: `currency`,
-  unit: `mile-per-hour`,
-  currency: `EUR`,
-  useGrouping: false,
-};
+// const num = 22832299;
+// const options1 = {
+//   style: `currency`,
+//   unit: `mile-per-hour`,
+//   currency: `EUR`,
+//   useGrouping: false,
+// };
 
-console.log(new Intl.NumberFormat(`en-US`, options1).format(num));
-console.log(new Intl.NumberFormat(`pt-PT`, options1).format(num));
-console.log(new Intl.NumberFormat(`ar-Sy`, options1).format(num));
-console.log(
-  navigator.language,
-  new Intl.NumberFormat(navigator.language).format(num)
+// console.log(new Intl.NumberFormat(`en-US`, options1).format(num));
+// console.log(new Intl.NumberFormat(`pt-PT`, options1).format(num));
+// console.log(new Intl.NumberFormat(`ar-Sy`, options1).format(num));
+// console.log(
+//   navigator.language,
+//   new Intl.NumberFormat(navigator.language).format(num)
+// );
+// 180
+const indgredients = [`olivves`, `jjj`];
+const pizzaTimer = setTimeout(
+  (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2}`),
+  3000,
+  ...indgredients
 );
+console.log();
+console.log(`waiting`);
+
+if (indgredients.includes(`spinach`)) clearTimeout(pizzaTimer);
+//  Again repeat;
+// setInterval(function () {
+//   const date = new Date();
+//   const hour = date.getHours();
+//   const minute = date.getMinutes();
+//   const sec = date.getSeconds();
+//   console.log(`${hour}:${minute}:${sec} H:M:S`);
+// }, 1000);
+// setInterval(() => {
+//   console.log(
+//     new Intl.DateTimeFormat(navigator.language, {
+//       hour: 'numeric',
+//       minute: 'numeric',
+//       second: 'numeric',
+//     }).format(new Date())
+//   );
+// }, 1000);
+
+// setInterval(() => {
+//   console.log(
+//     new Intl.DateTimeFormat(navigator.locale, {
+//       // hour: `numeric`,
+//       // minute: `numeric`,
+//       // second: `numeric`,
+//       timeStyle: `long`,
+//     }).format(new Date())
+//   );
+// }, 1000);
