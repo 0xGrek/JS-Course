@@ -13,6 +13,8 @@ const header = document.querySelector(`.header`);
 const btnScrollTo = document.querySelector(`.btn--scroll-to`);
 const section1 = document.querySelector(`#section--1`);
 
+/////////////////////////////////////////////////////
+// Button scrolling
 btnScrollTo.addEventListener(`click`, function (e) {
   const s1coords = section1.getBoundingClientRect();
   //examination
@@ -58,6 +60,55 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+//Page navigation
+// Another Way -  event delegetion
+// 1. Add event listener to commot parent el
+// 2. Detemine that el originated the event
+document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
+  e.preventDefault();
+  // Matching strategy/ сопоставляем информацию
+  if (e.target.classList.contains(`nav__link`)) {
+    const id = e.target.getAttribute(`href`);
+    document.querySelector(id).scrollIntoView({ behavior: `smooth` });
+  }
+});
+
+// ****************** Этот вариант хуже, если много links
+// document.querySelectorAll(`.nav__link`).forEach(function (el) {
+//   el.addEventListener(`click`, function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute(`href`); //берем селектор у елемента
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: `smooth` });
+//   });
+// });
+
+// tabbed component
+const tabs = document.querySelectorAll(`.operations__tab`);
+const tabsContainer = document.querySelector(`.operations__tab-container`);
+const tabsContent = document.querySelectorAll(`.operations__content`);
+
+// BAD practice
+// tabs.forEach(t => t.addEventListener(`click`, () => console.log(`TAB`)));
+
+tabsContainer.addEventListener(`click`, function (e) {
+  const clicked = e.target.closest(`.operations__tab`);
+  // ignore click outside
+  if (!clicked) return;
+  // Remove tab
+  tabs.forEach(t => t.classList.remove(`operations__tab--active`));
+  tabsContent.forEach(c => c.classList.remove(`operations__content--active`));
+  // Activated tab
+  clicked.classList.add(`operations__tab--active`);
+  // Content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add(`operations__content--active`);
+});
+
+console.log(`practic`);
+////////////////////////////////////
+//Page navaigation
 
 // *************PRACTIC*****************
 // const message = document.createElement(`div`);
@@ -128,27 +179,56 @@ document.addEventListener('keydown', function (e) {
 // 191
 
 // random number
-const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1));
+// const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1));
 
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
-console.log(randomColor(0, 255));
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+// console.log(randomColor(0, 255));
 
-document.querySelector(`.nav__link`).addEventListener(`click`, function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log(`LINK`);
+// document.querySelector(`.nav__link`).addEventListener(`click`, function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log(`LINK`);
+// });
+
+// document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log(`CONT`);
+// });
+
+// document.querySelector(`.nav`).addEventListener(
+//   `click`,
+//   function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log(`NAV`);
+//   },
+//   false
+// );
+// perents node, going down
+// const h1 = document.querySelector(`h1`);
+/*
+console.log(h1.querySelectorAll(`.highlight`));
+
+console.log(h1.childNodes);
+console.log(h1.children);
+ */
+// going upwords
+/*
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest(`.header1`).style.background = `var(--color-primary)`; 
+*/
+// going siblings
+/*
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
 });
 
-document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log(`CONT`);
-});
-
-document.querySelector(`.nav`).addEventListener(
-  `click`,
-  function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log(`NAV`);
-  },
-  false
-);
+ */
