@@ -1,17 +1,15 @@
 'use strict';
 
-///////////////////////////////////////
 // Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
-
 const header = document.querySelector(`.header`);
 
 const btnScrollTo = document.querySelector(`.btn--scroll-to`);
 const section1 = document.querySelector(`#section--1`);
+const section2 = document.querySelector(`#section--2`);
 
 const tabs = document.querySelectorAll(`.operations__tab`);
 const tabsContainer = document.querySelector(`.operations__tab-container`);
@@ -19,7 +17,24 @@ const tabsContent = document.querySelectorAll(`.operations__content`);
 
 const nav = document.querySelector(`.nav`);
 
-/////////////////////////////////////////////////////
+///////////////////////////////////////
+const openModal = function (e) {
+  e.preventDefault();
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+
 // Button scrolling
 btnScrollTo.addEventListener(`click`, function (e) {
   const s1coords = section1.getBoundingClientRect();
@@ -41,44 +56,15 @@ btnScrollTo.addEventListener(`click`, function (e) {
   // section1.scrollIntoView({ behavior: `smooth` });
 });
 
-const openModal = function (e) {
-  e.preventDefault();
-  modal.classList.remove('hidden');
-  overlay.classList.remove('hidden');
-};
-
-const closeModal = function () {
-  modal.classList.add('hidden');
-  overlay.classList.add('hidden');
-};
-
-// Open modal
-btnsOpenModal.forEach(btn => btn.addEventListener(`click`, openModal));
 // *Another way
 // for (let i = 0; i < btnsOpenModal.length; i++)
 //   btnsOpenModal[i].addEventListener('click', openModal);
+btnsOpenModal.forEach(btn => btn.addEventListener(`click`, openModal));
 
-btnCloseModal.addEventListener('click', closeModal);
-overlay.addEventListener('click', closeModal);
-
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-    closeModal();
-  }
-});
 //Page navigation
 // Another Way -  event delegetion
 // 1. Add event listener to commot parent el
 // 2. Detemine that el originated the event
-document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
-  e.preventDefault();
-  // Matching strategy/ сопоставляем информацию
-  if (e.target.classList.contains(`nav__link`)) {
-    const id = e.target.getAttribute(`href`);
-    document.querySelector(id).scrollIntoView({ behavior: `smooth` });
-  }
-});
-
 // ****************** Этот вариант хуже, если много links
 // document.querySelectorAll(`.nav__link`).forEach(function (el) {
 //   el.addEventListener(`click`, function (e) {
@@ -88,11 +74,16 @@ document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
 //     document.querySelector(id).scrollIntoView({ behavior: `smooth` });
 //   });
 // });
+document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
+  e.preventDefault();
+  // Matching strategy/ сопоставляем информацию
+  if (e.target.classList.contains(`nav__link`)) {
+    const id = e.target.getAttribute(`href`);
+    document.querySelector(id).scrollIntoView({ behavior: `smooth` });
+  }
+});
 
-// tabbed component
-
-// BAD practice
-// tabs.forEach(t => t.addEventListener(`click`, () => console.log(`TAB`)));
+// Tabbed component
 tabsContainer.addEventListener(`click`, function (e) {
   const clicked = e.target.closest(`.operations__tab`);
   // ignore click outside
@@ -121,13 +112,21 @@ const handleHover = function (e) {
     logo.style.opacity = this;
   }
 };
-// passigng the argument into hendler
-nav.addEventListener(`mouseover`, handleHover.bind(0.5));
-
-nav.addEventListener(`mouseout`, handleHover.bind(1));
+// Passigng the argument into handler
 // nav.addEventListener(`mouseout`, function (e) {
 //   handleHover(e, 1);
 // });
+nav.addEventListener(`mouseover`, handleHover.bind(0.5));
+nav.addEventListener(`mouseout`, handleHover.bind(1));
+
+// Sticky navigation
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+window.addEventListener(`scroll`, function (e) {
+  console.log(window.scrollY);
+  if (window.scrollY > initialCoords.top) nav.classList.add(`sticky`);
+  else nav.classList.remove(`sticky`);
+});
 /////////////////////////////////////
 console.log(`practic`);
 ////////////////////////////////////
