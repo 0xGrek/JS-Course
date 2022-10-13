@@ -13,6 +13,12 @@ const header = document.querySelector(`.header`);
 const btnScrollTo = document.querySelector(`.btn--scroll-to`);
 const section1 = document.querySelector(`#section--1`);
 
+const tabs = document.querySelectorAll(`.operations__tab`);
+const tabsContainer = document.querySelector(`.operations__tab-container`);
+const tabsContent = document.querySelectorAll(`.operations__content`);
+
+const nav = document.querySelector(`.nav`);
+
 /////////////////////////////////////////////////////
 // Button scrolling
 btnScrollTo.addEventListener(`click`, function (e) {
@@ -84,13 +90,9 @@ document.querySelector(`.nav__links`).addEventListener(`click`, function (e) {
 // });
 
 // tabbed component
-const tabs = document.querySelectorAll(`.operations__tab`);
-const tabsContainer = document.querySelector(`.operations__tab-container`);
-const tabsContent = document.querySelectorAll(`.operations__content`);
 
 // BAD practice
 // tabs.forEach(t => t.addEventListener(`click`, () => console.log(`TAB`)));
-
 tabsContainer.addEventListener(`click`, function (e) {
   const clicked = e.target.closest(`.operations__tab`);
   // ignore click outside
@@ -106,6 +108,27 @@ tabsContainer.addEventListener(`click`, function (e) {
     .classList.add(`operations__content--active`);
 });
 
+// Menu fade animations
+const handleHover = function (e) {
+  if (e.target.classList.contains(`nav__link`)) {
+    const link = e.target;
+    const siblings = link.closest(`.nav`).querySelectorAll(`.nav__link`);
+    const logo = link.closest(`.nav`).querySelector(`img`);
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+// passigng the argument into hendler
+nav.addEventListener(`mouseover`, handleHover.bind(0.5));
+
+nav.addEventListener(`mouseout`, handleHover.bind(1));
+// nav.addEventListener(`mouseout`, function (e) {
+//   handleHover(e, 1);
+// });
+/////////////////////////////////////
 console.log(`practic`);
 ////////////////////////////////////
 //Page navaigation
