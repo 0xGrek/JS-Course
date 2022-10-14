@@ -5,17 +5,19 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
-const header = document.querySelector(`.header`);
 
-const btnScrollTo = document.querySelector(`.btn--scroll-to`);
+const header = document.querySelector(`.header`);
+const nav = document.querySelector(`.nav`);
+
+const tabs = document.querySelectorAll(`.operations__tab`);
+const tabsContent = document.querySelectorAll(`.operations__content`);
+const tabsContainer = document.querySelector(`.operations__tab-container`);
+
+const allSections = document.querySelectorAll(`.section`);
 const section1 = document.querySelector(`#section--1`);
 const section2 = document.querySelector(`#section--2`);
 
-const tabs = document.querySelectorAll(`.operations__tab`);
-const tabsContainer = document.querySelector(`.operations__tab-container`);
-const tabsContent = document.querySelectorAll(`.operations__content`);
-
-const nav = document.querySelector(`.nav`);
+const btnScrollTo = document.querySelector(`.btn--scroll-to`);
 
 ///////////////////////////////////////
 const openModal = function (e) {
@@ -55,7 +57,6 @@ btnScrollTo.addEventListener(`click`, function (e) {
   // ANOTHER WAY
   // section1.scrollIntoView({ behavior: `smooth` });
 });
-
 // *Another way
 // for (let i = 0; i < btnsOpenModal.length; i++)
 //   btnsOpenModal[i].addEventListener('click', openModal);
@@ -112,6 +113,7 @@ const handleHover = function (e) {
     logo.style.opacity = this;
   }
 };
+
 // Passigng the argument into handler
 // nav.addEventListener(`mouseout`, function (e) {
 //   handleHover(e, 1);
@@ -119,16 +121,64 @@ const handleHover = function (e) {
 nav.addEventListener(`mouseover`, handleHover.bind(0.5));
 nav.addEventListener(`mouseout`, handleHover.bind(1));
 
-// Sticky navigation
-const initialCoords = section1.getBoundingClientRect();
-console.log(initialCoords);
-window.addEventListener(`scroll`, function (e) {
-  console.log(window.scrollY);
-  if (window.scrollY > initialCoords.top) nav.classList.add(`sticky`);
+// Sticky nav with API
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// };
+// const obsOptions = {
+//   root: null,
+//   threshold: [0, 0.2],
+// };
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(section1);
+// Sticky navigation another way
+// const initialCoords = section1.getBoundingClientRect();
+// console.log(initialCoords);
+// window.addEventListener(`scroll`, function (e) {
+//   console.log(window.scrollY);
+//   if (window.scrollY > initialCoords.top) nav.classList.add(`sticky`);
+//   else nav.classList.remove(`sticky`);
+// });
+const navHeight = nav.getBoundingClientRect().height; // responsive height
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) nav.classList.add(`sticky`);
   else nav.classList.remove(`sticky`);
+};
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
 });
+headerObserver.observe(header);
+
+// Reveal section
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove(`section--hidden`);
+  //cancel if we scroll up
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.1,
+});
+
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+  section.classList.add(`section--hidden`);
+});
+
 /////////////////////////////////////
-console.log(`practic`);
+console.log(`//////////////////////////////////`);
 ////////////////////////////////////
 //Page navaigation
 
