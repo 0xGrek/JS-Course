@@ -9,9 +9,9 @@ const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const header = document.querySelector(`.header`);
 const nav = document.querySelector(`.nav`);
 
+const tabsContainer = document.querySelector(`.operations__tab-container`);
 const tabs = document.querySelectorAll(`.operations__tab`);
 const tabsContent = document.querySelectorAll(`.operations__content`);
-const tabsContainer = document.querySelector(`.operations__tab-container`);
 
 const allSections = document.querySelectorAll(`.section`);
 const section1 = document.querySelector(`#section--1`);
@@ -166,22 +166,19 @@ const revealSection = function (entries, observer) {
   //cancel if we scroll up
   observer.unobserve(entry.target);
 };
-
 const sectionObserver = new IntersectionObserver(revealSection, {
   root: null,
   threshold: 0.1,
 });
-
 allSections.forEach(function (section) {
   sectionObserver.observe(section);
-  // section.classList.add(`section--hidden`);
+  section.classList.add(`section--hidden`);
 });
 
 // Lazy loading img
 // 3.
 const loadImg = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
 
   if (!entry.isIntersecting) return;
   // Replace src with data-src
@@ -202,36 +199,86 @@ const imgObserver = new IntersectionObserver(loadImg, {
 imgTarget.forEach(img => imgObserver.observe(img));
 
 // Slider
-const slides = document.querySelectorAll(`.slide`);
-const btnLeft = document.querySelector(`.slider__btn--left`);
-const btnRight = document.querySelector(`.slider__btn--right`);
-let curSlide = 0;
-const maxSlide = slides.length;
-const slider = document.querySelector(`.slider`);
+const slider = function () {
+  const slides = document.querySelectorAll(`.slide`);
+  const btnLeft = document.querySelector(`.slider__btn--left`);
+  const btnRight = document.querySelector(`.slider__btn--right`);
+  const slider = document.querySelector(`.slider`);
+  const dotContainer = document.querySelector(`.dots`);
 
-slider.style.transform = `scale(0.3) translateX(-1300px)`;
-slider.style.overflow = `visible`;
+  let curSlide = 0;
+  const maxSlide = slides.length;
 
-slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+  // fucntions
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide="${i}"></button>`
+      );
+    });
+  };
+  const activateDot = function (slide) {
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
 
-// 0%, 100%, 200%, 300%
-const goToSlide = function (slide) {
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-  );
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
+  };
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  };
+
+  // Next arows
+  const nextSlide = function () {
+    if (curSlide === maxSlide - 1) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+  const prevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+  // init
+  const init = function () {
+    goToSlide(0);
+    createDots();
+
+    activateDot(0);
+  };
+  init();
+  // Event handlers
+  btnRight.addEventListener(`click`, nextSlide);
+  btnLeft.addEventListener(`click`, prevSlide);
+
+  document.addEventListener(`keydown`, function (e) {
+    console.log(e);
+    if (e.key === `ArrowLeft`) prevSlide();
+    e.key === `ArrowRight` && nextSlide();
+  });
+
+  dotContainer.addEventListener(`click`, function (e) {
+    if (e.target.classList.contains(`dots__dot`)) {
+      const slide = e.target.dataset.slide;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  });
 };
-// start slide el
-goToSlide(0);
-// Next slide
-btnRight.addEventListener(`click`, function () {
-  if (curSlide === maxSlide - 1) {
-    curSlide = 0;
-  } else {
-    curSlide++;
-  }
-  goToSlide(curSlide);
-});
-
+slider();
 /////////////////////////////////////
 console.log(`//////////////////////////////////`);
 ////////////////////////////////////
@@ -359,3 +406,11 @@ console.log(h1.parentElement.children);
 });
 
  */
+
+document.addEventListener(`DOMContentLoaded`, function (e) {
+  console.log(`HTML parsed tree`, e);
+});
+
+window.addEventListener(`load`, function (e) {
+  console.log(`fuul page`, e);
+});
