@@ -15,9 +15,10 @@ car.prototype.break = function () {
 };
 const bmw = new car(`BMW`, 120);
 const merc = new car(`Mercedes`, 95);
+// console.log(bmw, merc);
 bmw.accelerate();
 merc.break();
-// console.log(bmw, merc);
+
 // #2
 class CarCl {
   constructor(make, speed) {
@@ -40,11 +41,11 @@ class CarCl {
   }
 }
 const ford = new CarCl(`Ford`, 120);
-ford.speedUS = 50;
-console.log(ford);
-ford.accelerate();
-ford.break();
-console.log(ford);
+// ford.speedUS = 50;
+// console.log(ford);
+// ford.accelerate();
+// ford.break();
+// console.log(ford);
 
 console.log(`//////////////PRACTIC`);
 //208 Constructor functions
@@ -105,44 +106,44 @@ Person.prototype.calcAge = function () {
 // const presonCl = class {};
 
 // declaration
-class presonCl {
-  constructor(fullName, bithYear) {
-    this.fullName = fullName;
-    this.bithYear = bithYear;
-  }
-  //   Instance method
-  //   Methods will be added to prototype propetry
-  calcAge1() {
-    // console.log(2022 - this.bithYear);
-  }
-  greet() {
-    // console.log(`Hey ${this.fullName}`);
-  }
-  get age() {
-    return 2022 - this.bithYear;
-  }
-  set fullName(name) {
-    console.log(name);
-    if (name.includes(' ')) this._fullName = name;
-    else alert(`${name} is not a full name!`);
-  }
-  get fullName() {
-    return this._fullName;
-  }
-  // Static method
-  static hey() {
-    console.log(`Hey there 🐱‍👤`);
-    console.log(this);
-  }
-}
-const serhii1 = new presonCl(`Serhii Ivanenko`, 1999);
-console.log(serhii1.age);
-serhii1.calcAge1();
-serhii1.greet();
-presonCl.hey();
+// class presonCl {
+//   constructor(fullName, bithYear) {
+//     this.fullName = fullName;
+//     this.bithYear = bithYear;
+//   }
+//   //   Instance method
+//   //   Methods will be added to prototype propetry
+//   calcAge1() {
+//     // console.log(2022 - this.bithYear);
+//   }
+//   greet() {
+//     // console.log(`Hey ${this.fullName}`);
+//   }
+//   get age() {
+//     return 2022 - this.bithYear;
+//   }
+//   set fullName(name) {
+//     console.log(name);
+//     if (name.includes(' ')) this._fullName = name;
+//     else alert(`${name} is not a full name!`);
+//   }
+//   get fullName() {
+//     return this._fullName;
+//   }
+//   // Static method
+//   static hey() {
+//     console.log(`Hey there 🐱‍👤`);
+//     console.log(this);
+//   }
+// }
+// const serhii1 = new presonCl(`Serhii Ivanenko`, 1999);
+// console.log(serhii1.age);
+// serhii1.calcAge1();
+// serhii1.greet();
+// presonCl.hey();
 
 // 214
-const walter = new presonCl(`Walter dd`, 1992);
+// const walter = new presonCl(`Walter dd`, 1992);
 const account = {
   owner: `Serhii`,
   movnents: [200, 500, 200, 1200],
@@ -154,8 +155,7 @@ const account = {
   },
 };
 account.latest = 999;
-console.log(account.latest);
-console.log(account.movnents);
+
 // 216 Obj create
 const personProto = {
   calcAge() {
@@ -168,13 +168,38 @@ const personProto = {
   },
 };
 
-const steven = Object.create(personProto);
-console.log(steven);
-steven.name = `Steven`;
-steven.bithYear = 2001;
-steven.calcAge();
-console.log(steven.__proto__ == personProto);
-// the better way
+// const steven = Object.create(personProto);
+// console.log(steven);
+// steven.name = `Steven`;
+// steven.bithYear = 2001;
+// steven.calcAge();
+// console.log(steven.__proto__ == personProto);
+// // the better way
 const sarah = Object.create(personProto);
 sarah.init(`Sarah`, 1945);
-sarah.calcAge();
+// sarah.calcAge();
+
+// 218 Inharitance between "Clasess": Constructor Function
+
+const PersonOne = function (firstName, bithYear) {
+  this.firstName = firstName;
+  this.bithYear = bithYear;
+};
+PersonOne.prototype.calcAge = function () {
+  console.log(2022 - this.bithYear);
+};
+
+const Student = function (firstName, bithYear, course) {
+  PersonOne.call(this, firstName, bithYear);
+  this.course = course;
+};
+//Important/ linking prototypes
+Student.prototype = Object.create(PersonOne.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student(`Mike`, 1999, `Computer Sciense`);
+mike.introduce();
+mike.calcAge();
