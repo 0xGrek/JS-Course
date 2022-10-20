@@ -45,8 +45,53 @@ const ford = new CarCl(`Ford`, 120);
 // console.log(ford);
 // ford.accelerate();
 // ford.break();
-// console.log(ford);
+console.log(ford);
 
+// #3
+const carNormal = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+carNormal.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge--;
+  console.log(
+    `${this.make} going at ${this.speed}km/h, with a charge of ${this.charge}%`
+  );
+};
+
+carNormal.prototype.break = function () {
+  this.speed -= 10;
+  this.charge -= 0.5;
+  console.log(
+    `${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`
+  );
+};
+
+const carElectro = function (make, speed, charge) {
+  carNormal.call(this, make, speed);
+  this.charge = charge;
+};
+// Link the prototypes
+carElectro.prototype = Object.create(carNormal.prototype);
+
+carElectro.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
+
+// carElectro.prototype.accelerate = function () {
+//   this.speed += 20;
+//   this.charge--;
+//   console.log(`${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`);
+// };
+
+const tesla = new carElectro(`tesla`, 100, 20);
+// console.log(tesla);
+// tesla.chargeBattery(20);
+// tesla.break();
+// tesla.accelerate();
+// tesla.accelerate();
+// console.log(tesla);
 console.log(`//////////////PRACTIC`);
 //208 Constructor functions
 const Person = function (firstName, bithYear) {
@@ -175,10 +220,10 @@ const personProto = {
 // steven.calcAge();
 // console.log(steven.__proto__ == personProto);
 // // the better way
-const sarah = Object.create(personProto);
-sarah.init(`Sarah`, 1945);
-// sarah.calcAge();
 
+// sarah.init(`Sarah`, 1945);
+// sarah.calcAge();
+const sarah = Object.create(personProto);
 // 218 Inharitance between "Clasess": Constructor Function
 
 const PersonOne = function (firstName, bithYear) {
@@ -203,3 +248,97 @@ Student.prototype.introduce = function () {
 const mike = new Student(`Mike`, 1999, `Computer Sciense`);
 mike.introduce();
 mike.calcAge();
+
+// console.log(Student.prototype.constructor);
+
+// Student.prototype.constructor = Student;
+// console.dir(Student.prototype.constructor);
+// console.log(mike instanceof Student);
+// console.log(mike instanceof PersonOne);
+console.log(mike instanceof Object);
+// 220 Inheritanse between classes
+class SudentCl extends PersonOne {
+  constructor(fullName, bithYear, course) {
+    // Always need to happan first!
+    super(fullName, bithYear);
+    this.course = course;
+  }
+  introduce() {
+    console.log(`My name ${this.firstName} and I study ${this.course}`);
+  }
+  calcAge() {
+    console.log(`1'm ${2022 - this.bithYear} years old, but i student`);
+  }
+}
+
+// const marta = new SudentCl(`Marta`, 2001, `Dota2`);
+// marta.introduce();
+// marta.calcAge();
+// 221 Inhetiranse beetween classes: obg.create
+const PersonProto1 = {
+  calcAge() {
+    console.log(2022 - this.bithYear);
+  },
+
+  init(firstName, bithYear) {
+    this.firstName = firstName;
+    this.bithYear = bithYear;
+  },
+};
+
+const StudentProto = Object.create(PersonProto1);
+
+StudentProto.init = function (firstName, bithYear, course) {
+  PersonProto1.init.call(this, firstName, bithYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+jay.init(`Jay`, 2010, `IT`);
+jay.introduce();
+jay.calcAge();
+// 222 Another
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    // protected propetry
+    this._movements = [];
+    this.locale = navigator.language;
+
+    console.log(`thnks for opening an account ${owner}`);
+  }
+  //   Public interface
+  deposit(val) {
+    this._movements.push(val);
+  }
+  withdraw(val) {
+    this.deposit(-val);
+  }
+  approveLoan(val) {
+    return true;
+  }
+  requestLoan(val) {
+    if (this.approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan aproved`);
+    }
+  }
+}
+const acc1 = new Account(`Jonas`, `EUR`, 1111);
+console.log(acc1);
+
+acc1.requestLoan(999);
+acc1.approveLoan();
+// bad practic
+acc1._movements.push(250);
+acc1._movements.push(-150);
+acc1.deposit(250);
+acc1.withdraw(140);
+
+//223 Encpsulation
