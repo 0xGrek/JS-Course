@@ -45,7 +45,7 @@ const ford = new CarCl(`Ford`, 120);
 // console.log(ford);
 // ford.accelerate();
 // ford.break();
-console.log(ford);
+// console.log(ford);
 
 // #3
 const carNormal = function (make, speed) {
@@ -79,19 +79,52 @@ carElectro.prototype.chargeBattery = function (chargeTo) {
   this.charge = chargeTo;
 };
 
-// carElectro.prototype.accelerate = function () {
-//   this.speed += 20;
-//   this.charge--;
-//   console.log(`${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`);
-// };
-
 const tesla = new carElectro(`tesla`, 100, 20);
 // console.log(tesla);
 // tesla.chargeBattery(20);
 // tesla.break();
 // tesla.accelerate();
 // tesla.accelerate();
-// console.log(tesla);
+console.log(tesla);
+
+// #4
+class carElectro2 extends carNormal {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+  break() {
+    this.speed -= 10;
+    this.#charge -= 0.5;
+    console.log(
+      `${this.make} going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} going at ${this.speed}km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+  chargeTo(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+}
+const rivian = new carElectro2(`Rivian`, 50, 99);
+// console.log(rivian);
+// rivian.accelerate().accelerate().accelerate();
+// rivian.break().break().break();
+// console.log(rivian);
+
 console.log(`//////////////PRACTIC`);
 //208 Constructor functions
 const Person = function (firstName, bithYear) {
@@ -302,43 +335,65 @@ jay.init(`Jay`, 2010, `IT`);
 jay.introduce();
 jay.calcAge();
 // 222 Another
+// Public/ Private fields and methods / static
 class Account {
+  // 1) Publlic fields (instances)
+  locale = navigator.language;
+  // 2) Private fields (instances)
+  #movements = [];
+  #pin;
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
     // protected propetry
-    this._movements = [];
-    this.locale = navigator.language;
+    // this.#pin = pin;
+    // this._movements = [];
+    // this.locale = navigator.language;
 
     console.log(`thnks for opening an account ${owner}`);
   }
+  // 3) Public method
   //   Public interface
+  getMovements() {
+    return this.#movements;
+  }
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
+    return this;
   }
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
-  approveLoan(val) {
-    return true;
-  }
+
   requestLoan(val) {
-    if (this.approveLoan(val)) {
+    if (this._approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan aproved`);
+      return this;
     }
+  }
+  static helper() {
+    console.log(`HELPER`);
+  }
+  // 4) Private methods
+  _approveLoan(val) {
+    return true;
   }
 }
 const acc1 = new Account(`Jonas`, `EUR`, 1111);
-console.log(acc1);
 
-acc1.requestLoan(999);
-acc1.approveLoan();
 // bad practic
-acc1._movements.push(250);
-acc1._movements.push(-150);
+// acc1._movements.push(250);
+// acc1._movements.push(-150);
+acc1.requestLoan(999);
+console.log(acc1);
 acc1.deposit(250);
 acc1.withdraw(140);
-
-//223 Encpsulation
+console.log(acc1.getMovements());
+Account.helper();
+//224 Changing
+acc1.deposit(222).deposit(100).requestLoan(999);
+console.log(acc1);
+console.log(acc1.getMovements());
+// 226 Slasses
