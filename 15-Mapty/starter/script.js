@@ -27,10 +27,27 @@ if (navigator.geolocation)
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker(coords)
-        .addTo(map)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        .openPopup();
+      // add marker
+      map.on(`click`, function (mapEvent) {
+        console.log(mapEvent);
+
+        const { lat, lng } = mapEvent.latlng;
+
+        L.marker([lat, lng])
+          .addTo(map)
+          .bindPopup(
+            L.popup({
+              // set when we ckick
+              maxWidth: 250,
+              minWidth: 100,
+              autoClose: false,
+              closeOnClick: false,
+              className: `running-popup`,
+            })
+          )
+          .setPopupContent(`Working`)
+          .openPopup();
+      });
     },
     function () {
       alert(`Could not get your position`);
