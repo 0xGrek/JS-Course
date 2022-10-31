@@ -45,6 +45,8 @@ getCountyData(`germany`);
 getCountyData(`USA`);
 */
 // 250. Callback HELL
+/*
+
 const renderCountry = function (data, className = ``) {
   const html = `
     <article class="country ${className}">
@@ -84,6 +86,7 @@ const getCountyAndNeighbour = function (country) {
     // Get eighbour country (2)
     // const [neighbour] = data.borders?.[0];
     const [neighbour] = data.borders;
+
     // console.log(neighbour);
     if (!neighbour) return;
 
@@ -100,5 +103,18 @@ const getCountyAndNeighbour = function (country) {
   });
 };
 
-// getCountyAndNeighbour(`spain`);
+// getCountyAndNeighbour(`usa`);
 getCountyAndNeighbour(`spain`);
+
+setTimeout(() => {
+  console.log(`1 second passed`);
+}, 1000);
+*/
+
+// 251. Promises
+// const request = new XMLHttpRequest();
+//   request.open(`GET`, `https://restcountries.com/v3.1/name/${country}`);
+//   request.send();
+
+const request = fetch(`https://restcountries.com/v3.1/name/portugal`);
+console.log(request);
