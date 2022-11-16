@@ -201,36 +201,88 @@ const renderError = function (msg) {
   // countriesContainer.style.opacity = 1;
 };
 
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+
+    return response.json();
+  });
+};
+
 const getCountryData = function (country) {
   // Country 1
-  fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then(response => response.json())
+  getJSON(
+    `https://restcountries.com/v3.1/alpha/${country}`,
+    `Country not found`
+  )
     .then(data => {
       renderCountry(data[0]);
-      console.log(data);
+
       const neighbour = data[0].borders[0];
       console.log(neighbour);
 
-      if (!neighbour) return;
+      if (!neighbour) throw new Error(`No neighbour found`);
 
       // Country 2
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+      getJSON(
+        `https://restcountries.com/v3.1/alpha/${neighbour}`,
+        `Neighbour not found`
+      );
     })
-    .then(response => response.json())
     .then(data => renderCountry(data[0], 'neighbour'))
-    // if promise rejected
     .catch(err => {
-      console.error(`${err}`);
-      renderError(`Something went wrong 💥💥💥 ${err.message}.Try again!`);
+      console.error(`${err} 💥💥💥`);
+      renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
     })
-    // always use in finali promise
     .finally(() => {
       countriesContainer.style.opacity = 1;
     });
 };
 
 btn.addEventListener(`click`, function () {
-  getCountryData(`SPAIN`);
+  getCountryData(`usa`);
 });
 
-// getCountryData(`portugal`);
+// getCountryData(`australia`);
+// OLD wersion
+// const getCountryData = function (country) {
+//   // Country 1
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(response => {
+//       console.log(response);
+
+//       if (!response.ok) throw new Error(`Country not found ${response.status}`);
+
+//       return response.json();
+//     })
+//     .then(data => {
+//       renderCountry(data[0]);
+//       console.log(data);
+//       const neighbour = data[0].borders[0];
+//       console.log(neighbour);
+
+//       if (!neighbour) return;
+
+//       // Country 2
+//       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+//     })
+//     .then(response => {
+//       if (!response.ok) throw new Error(`Country not found ${response.status}`);
+
+//       response.json();
+//     })
+//     .then(data => renderCountry(data, 'neighbour'))
+//     // if promise rejected
+//     .catch(err => {
+//       console.error(`${err}`);
+//       renderError(`Something went wrong 💥💥💥 ${err.message}.Try again!`);
+//     })
+//     // always use in finali promise
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
+
+// btn.addEventListener(`click`, function () {
+//   getCountryData(`spain`);
+// });
