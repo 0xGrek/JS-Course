@@ -463,6 +463,7 @@ createImage(`img/img-1.jpg`)
 */
 
 //  262 Async/ Avait
+/*
 const renderCountry = function (data, className = ``) {
   const html = `
     <article class="country ${className}">
@@ -492,25 +493,66 @@ const getPostition = function () {
   });
 };
 
-const whereAmYou = async function () {
-  // Geolocation
-  const pos = await getPostition();
-  const { latitude: lat, longitude: lng } = pos.coords;
+const whereAreYou = async function () {
+  try {
+    // Geolocation
+    const pos = await getPostition();
+    const { latitude: lat, longitude: lng } = pos.coords;
 
-  // Reverse geocoding
-  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-  const dataGeo = await resGeo.json();
+    // Reverse geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    const dataGeo = await resGeo.json();
 
-  // Country Data
-  const res = await fetch(
-    `https://restcountries.com/v3.1/name/${dataGeo.country}`
-  );
-  const data = await res.json();
-  renderCountry(data[0]);
+    // Country Data
+    const res = await fetch(
+      `https://restcountries.com/v3.1/name/${dataGeo.country}`
+    );
+    // FIX country
+    if (!res.ok) throw new Error(`Problem getting  country`);
+    // FIX geo
+    if (!resGeo.ok) throw new Error(`Problem getting location data`);
+
+    const data = await res.json();
+    renderCountry(data[0]);
+
+    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
+  } catch (err) {
+    console.error(`${err} 💢`);
+    renderError(`💢 ${err.message}`);
+
+    // Reject promise returned from acync fucntion
+    throw err;
+  }
 };
 
-whereAmYou();
-console.log(`first`);
+console.log(`1: Will get location`);
+// Old way
+// const city = whereAreYou();
+// console.log(city);
+// whereAreYou()
+//   .then(city => console.log(`2: ${city}`))
+//   .catch(err => console.error(`2: ${err.message} ❌`))
+//   .finally(() => console.log(`3: Finised getting`));
+// New  way return data from acync fucntion
+(async function () {
+  try {
+    const city = await whereAreYou();
+    console.log(`2: ${city}`);
+  } catch (err) {
+    console.error(`2: ${err.message} ❌`);
+  }
+  console.log(`3: Finised getting`);
+})();
+
+// try {
+//   let y = 1;
+//   const x = 2;
+//   x = 3;
+// } catch (err) {
+//   alert(err.message);
+// }
 
 // **
 // fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`).then(res => console.log(res));
+*/
+// 265 Runnig promise in Parallel
