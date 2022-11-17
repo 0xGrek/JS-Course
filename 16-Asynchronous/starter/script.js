@@ -300,7 +300,7 @@ getCountryData(`usa`);
 // console.log(`Test end`);
 
 //#259 Simple Promise
-const lotteryPromise = new Promise(function (reslove, reject) {
+/*const lotteryPromise = new Promise(function (reslove, reject) {
   console.log(`Lotery draw is LOL`);
   setTimeout(function () {
     if (Math.random() >= 0.5) {
@@ -315,13 +315,202 @@ lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
 
 const wait = function (seconds) {
   return new Promise(function (reslove) {
-    setTimeout(reslove, (seconds = 2000));
+    setTimeout(reslove, (seconds = 1000));
   });
 };
 
-wait(2)
+wait(1)
   .then(() => {
-    console.log(`I waited for a two seconds`);
+    console.log(`I waited for a 2 seconds`);
     return wait(1);
   })
-  .then(() => console.log(`I waited a one second`));
+  .then(() => {
+    console.log(`I waited for a 3 seconds`);
+    return wait(1);
+  })
+  .then(() => {
+    console.log(`I waited for a 4 seconds`);
+    return wait(5);
+  })
+
+  .then(() => console.log(`I waited a 5 second`));
+
+Promise.resolve(`abc`).then(x => console.log(x));
+Promise.reject(new Error(`PROBLEM!`)).catch(x => console.error(x));
+*/
+// 260 Promisifing GEO
+
+// const renderCountry = function (data, className = ``) {
+//   const html = `
+//     <article class="country ${className}">
+//       <img class="country__img" src="${data.flags.png}" />
+//       <div class="country__data">
+//         <h3 class="country__name">${data.name.common}</h3>
+//         <h4 class="country__region">${data.region}</h4>
+//         <p class="country__row"><span>👫</span>${(
+//           +data.population / 1000000
+//         ).toFixed(1)} people</p>
+//         <p class="country__row"><span>🗣️</span>${
+//           data.languages[Object.keys(data.languages)[0]]
+//         }</p>
+//         <p class="country__row"><span>💰</span>${
+//           data.currencies[Object.keys(data.currencies)[0]].name
+//         }</p>
+//       </div>
+//     </article>
+//     `;
+//   countriesContainer.insertAdjacentHTML('beforeend', html);
+//   countriesContainer.style.opacity = 1;
+// };
+
+// const getPostition = function () {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve (position),
+//     //   err => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
+// getPostition().then(pos => console.log(pos));
+
+const whereAmI = function () {
+  getPostition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      console.log(pos.coords);
+
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+
+      return res.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => console.error(`${err.message} 💥`));
+};
+
+btn.addEventListener(`click`, whereAmI);
+
+// #2 codding
+/*const imgContainer = document.querySelector(`.images`);
+
+const wait = function (seconds) {
+  return new Promise(function (reslove) {
+    setTimeout(reslove, (seconds = 1000));
+  });
+};
+
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement(`img`);
+    img.src = imgPath;
+
+    img.addEventListener(`load`, function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener(`error`, function () {
+      reject(new Error(`Image not found`));
+    });
+  });
+};
+
+let currentImg;
+createImage(`img/img-1.jpg`)
+  .then(img => {
+    currentImg = img;
+    console.log(`Image 1 loaded`);
+    return wait(2);
+  })
+  // 2 img
+  .then(() => {
+    currentImg.style.display = `none`;
+    return createImage(`img/img-2.jpg`);
+  })
+  .then(img => {
+    currentImg = img;
+    console.log(`Image 2 loaded`);
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = `none`;
+    return createImage(`img/img-3.jpg`);
+  })
+  // 3 img
+  .then(img => {
+    currentImg = img;
+    console.log(`Images 3 load`);
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = `none`;
+  })
+
+  .catch(err => console.error(err));
+*/
+
+//  262 Async/ Avait
+const renderCountry = function (data, className = ``) {
+  const html = `
+    <article class="country ${className}">
+      <img class="country__img" src="${data.flags.png}" />
+      <div class="country__data">
+        <h3 class="country__name">${data.name.common}</h3>
+        <h4 class="country__region">${data.region}</h4>
+        <p class="country__row"><span>👫</span>${(
+          +data.population / 1000000
+        ).toFixed(1)} people</p>
+        <p class="country__row"><span>🗣️</span>${
+          data.languages[Object.keys(data.languages)[0]]
+        }</p>
+        <p class="country__row"><span>💰</span>${
+          data.currencies[Object.keys(data.currencies)[0]].name
+        }</p>
+      </div>
+    </article>
+    `;
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.style.opacity = 1;
+};
+
+const getPostition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmYou = async function () {
+  // Geolocation
+  const pos = await getPostition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  // Reverse geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  const dataGeo = await resGeo.json();
+
+  // Country Data
+  const res = await fetch(
+    `https://restcountries.com/v3.1/name/${dataGeo.country}`
+  );
+  const data = await res.json();
+  renderCountry(data[0]);
+};
+
+whereAmYou();
+console.log(`first`);
+
+// **
+// fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`).then(res => console.log(res));

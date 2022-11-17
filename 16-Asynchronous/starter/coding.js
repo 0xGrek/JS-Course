@@ -26,8 +26,14 @@ GOOD LUCK 😀
 
 */
 // // #1
+
 // const whereAmI = function (lat, lng) {
-//   fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+//   getPostition()
+//     .then(pos => {
+//       const { lat = latitude, lng = longitude } = pos.coord;
+
+//       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     })
 //     .then(res => {
 //       if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
 //       return res.json();
@@ -47,6 +53,7 @@ GOOD LUCK 😀
 //     .catch(err => console.error(`${err.message} 💥`));
 // };
 
+// btn.addEventListener(`click`, whereAmI);
 // whereAmI(52.508, 13.381);
 // whereAmI(19.037, 72.873);
 // whereAmI(-33.933, 18.474);

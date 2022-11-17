@@ -42,7 +42,7 @@
 // data1.toString();
 // console.log(`...${data1[0]}C ...${data1[1]}C...${data1[2]}C...`);
 
-// console.log(data1.toString());
+// console.log(data1                                                                                                                                     .toString());
 
 // const printForecast = function (arr) {
 //   let str = "";
