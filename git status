@@ -1,0 +1,425 @@
+[33mcommit 1e2c4d355ad56f84bad471b6a9aa669dbbd0b86c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sun Nov 20 21:05:49 2022 +0000
+
+    new
+
+[33mcommit ff8e14b74ca60370064abdb50ee3aa8b1ed583e8[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Fri Nov 18 12:46:11 2022 +0000
+
+    update
+
+[33mcommit 6d0e0907ebabe9086677a148159df8c136237820[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Thu Nov 17 21:16:44 2022 +0000
+
+    298.async
+
+[33mcommit 2812821c93772e7a56ccf366f092ebd9b89b182f[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Thu Nov 17 19:12:30 2022 +0000
+
+    step1
+
+[33mcommit c9fb031ea4e48d02dbad40c1acae1c76ad141ab5[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Wed Nov 16 17:32:02 2022 +0000
+
+    259.ss
+
+[33mcommit 6fd31610c0a466ca8456b1f1c58e644062a0ef76[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Wed Nov 16 12:11:54 2022 +0000
+
+    let`s go!
+
+[33mcommit 98a8b87a454475cd3ea112190c0e42f1726c6972[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Mon Oct 31 21:22:59 2022 +0000
+
+    prom_2
+
+[33mcommit 5a638452e145b2f2182658e175ca17759b67654b[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Mon Oct 31 15:31:11 2022 +0000
+
+    prom__1
+
+[33mcommit 21f71bd728dc1984850fc5f7c3a575333c6a7a04[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sat Oct 29 22:42:00 2022 +0100
+
+    step1
+
+[33mcommit 520019b16d9d01845588cd464582c7996d602881[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Thu Oct 27 20:13:00 2022 +0100
+
+    Delete logo.png
+
+[33mcommit 85ebfdd3fa3747fa7a404d706d761f95c91deb5a[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Mon Oct 24 11:21:55 2022 +0200
+
+    defect
+
+[33mcommit 68bf9a52fbf3d0ab6002199cdef56c8f271b9458[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sun Oct 23 20:38:04 2022 +0200
+
+    work with local storage
+
+[33mcommit 79942889c9ca9dd84e3450f9f7c134683cbd53e4[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sun Oct 23 18:25:58 2022 +0200
+
+    render workouts
+
+[33mcommit dc6ed2d37c8001b2615a8380add37fd418b380b6[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sun Oct 23 11:21:38 2022 +0200
+
+    creating a new workout
+
+[33mcommit 2b5bac395c6440b3cfdfeecc912c69799cd5f5d6[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sat Oct 22 17:47:31 2022 +0200
+
+    add uniq id
+
+[33mcommit ed23abb1732cb80579871c24e04a4053133588af[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sat Oct 22 17:01:20 2022 +0200
+
+    refactoring
+
+[33mcommit a61ffc3b35d8cafd0cd5096deb7863acb59ecb70[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Fri Oct 21 19:45:11 2022 +0200
+
+    render input form
+
+[33mcommit 38262ef22369c256f62b6d40dfdeaeee0e839495[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Fri Oct 21 18:41:40 2022 +0200
+
+    add map marker
+
+[33mcommit 709e06810b64220c5749c8c04c89e4c24272f09f[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Fri Oct 21 18:16:59 2022 +0200
+
+    add coords
+
+[33mcommit 0e704ddf968a53ab3703e10adeff46ac7cf06f07[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Fri Oct 21 17:49:17 2022 +0200
+
+    use geo api
+
+[33mcommit ac8483bd990537f619a21e279ac6c904239455a3[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Fri Oct 21 14:40:21 2022 +0200
+
+    classes summary
+
+[33mcommit 3508eeb33abf2b2d91521b48c62a1ea022b5d423[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Thu Oct 20 18:40:34 2022 +0200
+
+    step_2
+
+[33mcommit ea79e2755ced8bc76f0398f247cd492f42c188f4[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Wed Oct 19 23:04:03 2022 +0200
+
+    step
+
+[33mcommit a5d7e4a1e8f5dda69f73c88259eb481846b4a4ad[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Wed Oct 19 20:13:31 2022 +0200
+
+    obj create
+
+[33mcommit 288cced04036fe5133a0b9d8a6b82e015494f1bb[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Tue Oct 18 14:44:28 2022 +0200
+
+    add slider comp.
+
+[33mcommit 8dcdd99ad346c32a500e9cc61f1e67e4b33a1c92[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sat Oct 15 20:02:05 2022 +0200
+
+    slider_step1
+
+[33mcommit 60e68e131f768641d8007d0d536253afe1fb1759[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Fri Oct 14 20:52:44 2022 +0200
+
+    lazy loading
+
+[33mcommit 16c1f3e2d50bf3ad63e3a6287d26aa52675b54bd[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Fri Oct 14 14:54:26 2022 +0200
+
+    impl observer API
+
+[33mcommit dc1386b44b3aa0eec88e38c9ecc5eaeb11501b47[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Thu Oct 13 22:44:55 2022 +0200
+
+    more scroll  event
+
+[33mcommit 7a692650f3464df78bb33521d517e035f9cba182[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Thu Oct 13 20:08:51 2022 +0200
+
+    add handleHover
+
+[33mcommit 592c4e21cb9a71894cc29f4478af89bfd291764f[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Thu Oct 13 19:06:30 2022 +0200
+
+    add tabs
+
+[33mcommit 4ad2abf16560c2d7a73775d5a6fbc44737398b0f[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Wed Oct 12 19:50:06 2022 +0200
+
+    step_bubbling
+
+[33mcommit 8441740bb3864b36f374c04d6804e92fb630ad94[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Mon Oct 10 18:38:19 2022 +0200
+
+    add timer, reset
+
+[33mcommit 0b311526376cc7c3cd44581571b092b4e078ceb6[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Mon Oct 10 17:01:38 2022 +0200
+
+    setTImer at btnLoan
+
+[33mcommit 1e317225f1bffdb43e4c4247731bf2ff966318fb[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sun Oct 9 00:46:40 2022 +0200
+
+    iso_time
+
+[33mcommit 7e9c1cee3ff5286b822bf4e7b66619c4bef2d5c6[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sat Oct 8 13:09:26 2022 +0200
+
+    add ISO standart date
+
+[33mcommit 640c50abdd2d3752bc4c6f787a212781f4bd383a[m
+Author: Serhii <rfrf198231@gmail.com>
+Date:   Sat Oct 8 00:10:57 2022 +0200
+
+    add dates to app
+
+[33mcommit 206ecad01c571291f17f8e44b7b8d08e50bd5781[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Sat Oct 1 12:20:00 2022 +0200
+
+    S5
+
+[33mcommit b741c7796570582f32987428dd8b35dd92d1b7d5[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Fri Sep 30 13:00:17 2022 +0200
+
+    final
+
+[33mcommit 03bd2ca414a322a3e9486cce877acffe5119e2f4[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Wed Sep 28 21:39:14 2022 +0200
+
+    s4
+
+[33mcommit 817e7bffb297be97ec2b5f6b91b69035f464585f[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Wed Sep 28 12:54:11 2022 +0200
+
+    s3
+
+[33mcommit 7ff58658f09c35b12ed833a1bdb92f6cc38a2e03[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Tue Sep 27 20:13:21 2022 +0200
+
+    arr_s3
+
+[33mcommit bfeafdd4373513823988ce5b05f15b3901bffdb3[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Tue Sep 27 09:11:04 2022 +0200
+
+    arr_s2
+
+[33mcommit 2bfc7079b003101ea916213059ae17ffd9f53945[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Mon Sep 26 09:57:53 2022 +0200
+
+    array_step1
+
+[33mcommit cf79283b1f9840518ff47ac1f73d1378e0c93802[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Wed Sep 21 20:14:21 2022 +0200
+
+    funk_step2
+
+[33mcommit 93d1f17ad3277a5f8b498107d620b3947c66d657[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Mon Sep 19 22:02:52 2022 +0200
+
+    funk_step1
+
+[33mcommit 3e851040dad82b16b8407aa684aed56f3395df67[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Mon Sep 19 15:22:44 2022 +0200
+
+    finish_string
+
+[33mcommit cb7c2bca9f0b274d929f68c45fc0323db065938f[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Fri Sep 16 22:35:54 2022 +0200
+
+    crazy__string
+
+[33mcommit 26f614a2e5f357da4ba026e032de2741bb08aaa3[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Fri Sep 16 14:27:53 2022 +0200
+
+    step_string
+
+[33mcommit b7d0b245e3fc9b51e5dfe6c5a4123e6801a6c221[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Thu Sep 15 20:32:06 2022 +0200
+
+    s5_p7
+
+[33mcommit c05e777175ef02a7c5f2b716e3bbfdf2ffc5fe08[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Wed Sep 14 21:30:59 2022 +0200
+
+    s5_p4
+
+[33mcommit 5a7507ca248b8574011ffc903e7937db41300e4f[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Tue Sep 13 18:10:37 2022 +0200
+
+    p5_s1
+
+[33mcommit 7fe39bdc9f50035aa8c831dafd2241d31b4d9929[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Mon Sep 12 14:14:44 2022 +0200
+
+    s4_p4
+
+[33mcommit 36de5fd6b1ebd386c7c7858923fa586bb6e657be[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Fri Sep 9 14:33:01 2022 +0200
+
+    s3_p4
+
+[33mcommit d38f42aa3c5c48796d578a7d2b9b6d5e7bf691bd[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Thu Sep 8 17:13:37 2022 +0200
+
+    s3_p3
+
+[33mcommit e2ac7990c1439407b4d0d59bba36a75e3e101d4f[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Thu Sep 8 14:36:10 2022 +0200
+
+    s3_p2
+
+[33mcommit 5a225104946b44ac506dc7b9baab3a9078980118[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Thu Sep 8 12:01:17 2022 +0200
+
+    s3_p2
+
+[33mcommit 9b0a8d041bbd309d198e1021d4472af7e5e80f9a[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Thu Sep 8 09:35:23 2022 +0200
+
+    part3_step1
+
+[33mcommit d1917526250e7b48756b458fe52cde3c76774f7b[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Tue Sep 6 11:54:01 2022 +0200
+
+    p3_s2
+
+[33mcommit 24fd78c2c131c4ac9a833c79199c8189c201d430[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Mon Sep 5 17:55:58 2022 +0200
+
+    part3_step1
+
+[33mcommit 67a1fed383987de1551c539d91494d597f236984[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Mon Sep 5 13:05:21 2022 +0200
+
+    p2_s5-final
+
+[33mcommit b7d68fa166398b50e5e38d99990e82ba07bdeb51[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Sun Sep 4 21:07:19 2022 +0200
+
+    p2_s4
+
+[33mcommit 6b94ba234aca4d816c5e53a243fb636510351aa0[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Sat Sep 3 10:35:03 2022 +0200
+
+    p2_step3
+
+[33mcommit 1596af09e6f2b5ffb9cdb13d0168aed41e8705dd[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Fri Sep 2 22:55:53 2022 +0200
+
+    part2_step3
+
+[33mcommit 81d7b256cefc371886883951333ca516c0fe4b0f[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Fri Sep 2 16:37:06 2022 +0200
+
+    part2_step2
+
+[33mcommit dc9232f745deca37562ebd832818a05a5e6e6ade[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Thu Sep 1 22:21:30 2022 +0200
+
+    part2_step1
+
+[33mcommit 4b0509612b787e342b783ad43a09d20388610515[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Thu Sep 1 16:01:45 2022 +0200
+
+    part_1_end
+
+[33mcommit 14fb3aa06d765d96c7b77dc593ec90e37b8e2ba7[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Wed Aug 31 22:11:44 2022 +0200
+
+    step_2js
+
+[33mcommit b5144a1741926edc86903cbb8f4c2a41d3ab50ed[m
+Author: rfrf198231 <rfrf198231@gmail.com>
+Date:   Tue Aug 30 16:11:14 2022 +0200
+
+    step_1
+
+[33mcommit d601c0567e2091148a3fc0697bf226de76d5d2f4[m[33m ([m[1;31morigin/second[m[33m, [m[1;32msecond[m[33m)[m
+Author: Serhii Ivanenko <41744903+ivanenko-pt@users.noreply.github.com>
+Date:   Mon Aug 29 20:58:12 2022 +0200
+
+    Update README.md
+
+[33mcommit a9ae392aed70a6bc4dc8ab99fa4017f0b794678e[m
+Author: Serhii Ivanenko <41744903+ivanenko-pt@users.noreply.github.com>
+Date:   Mon Aug 29 20:53:36 2022 +0200
+
+    Initial commit
